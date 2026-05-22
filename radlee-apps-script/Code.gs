@@ -189,6 +189,7 @@ function processAgentRequest(userInput, sessionHistory = []) {
                   "title":     { "type": "STRING" },
                   "iso":       { "type": "STRING", "description": "ISO 8601 formatted datetime string for the start of the event (e.g. 2026-05-21T15:00:00Z). REQUIRED for CALENDAR actions." },
                   "duration_mins": { "type": "INTEGER", "description": "Duration of the event in minutes. Defaults to 30 if omitted." },
+                  "rrule":     { "type": "STRING", "description": "Optional RFC5545 RRULE string for recurring events (e.g. FREQ=DAILY;COUNT=5). Do NOT include 'RRULE:' prefix." },
                   "recipient": { "type": "STRING" },
                   "subject":   { "type": "STRING" },
                   "body":      { "type": "STRING" },
@@ -378,7 +379,7 @@ function handleStructuredRouting(action, params, SETTINGS) {
       if (isNaN(Date.parse(params.iso))) {
         return `⚠️ Parameter Error: 'iso' timestamp [${params.iso}] is not a valid date string. Ask user to clarify the time of the event.`;
       }
-      return execIdempotent(`CALENDAR|${params.title}|${params.iso}`, () => execCalendarAction(params.title, params.iso, params.duration_mins, params.guests));
+      return execIdempotent(`CALENDAR|${params.title}|${params.iso}`, () => execCalendarAction(params.title, params.iso, params.duration_mins, params.guests, params.rrule));
 
     case "DOC":
       requireParam("doc_name");
@@ -719,15 +720,32 @@ function execReadFile(folderName, fileName, contextFolders) {
   }
 }
 
-function execCalendarAction(title, timeStr, durationMins, guests) {
-  let options = {};
-  if (guests) {
-    options.guests = guests;
-    options.sendInvites = true;
-  }
+function execCalendarAction(title, timeStr, durationMins, guests, rrule) {
   const durationMs = (durationMins || 30) * 60000;
-  CalendarApp.getDefaultCalendar().createEvent(`[CoS] ${title}`, new Date(timeStr), new Date(new Date(timeStr).getTime() + durationMs), options);
-  return `✅ **Scheduled:** ${title} at ${new Date(timeStr).toLocaleString()}` + (guests ? ` with ${guests}` : ``);
+  const startTime = new Date(timeStr);
+  const endTime = new Date(startTime.getTime() + durationMs);
+
+  if (rrule) {
+    let event = {
+      summary: `[CoS] ${title}`,
+      start: { dateTime: startTime.toISOString() },
+      end: { dateTime: endTime.toISOString() },
+      recurrence: [`RRULE:${rrule}`]
+    };
+    if (guests) {
+      event.attendees = guests.split(',').map(e => ({email: e.trim()}));
+    }
+    Calendar.Events.insert(event, 'primary', {sendUpdates: guests ? 'all' : 'none'});
+    return `✅ **Scheduled (Recurring):** ${title} starting ${startTime.toLocaleString()}` + (guests ? ` with ${guests}` : ``);
+  } else {
+    let options = {};
+    if (guests) {
+      options.guests = guests;
+      options.sendInvites = true;
+    }
+    CalendarApp.getDefaultCalendar().createEvent(`[CoS] ${title}`, startTime, endTime, options);
+    return `✅ **Scheduled:** ${title} at ${startTime.toLocaleString()}` + (guests ? ` with ${guests}` : ``);
+  }
 }
 
 function execDocAction(title, content, vaultId) {
