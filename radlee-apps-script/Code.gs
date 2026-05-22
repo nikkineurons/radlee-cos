@@ -1551,9 +1551,11 @@ Ideas and future projects to incubate.`
       console.warn("Failed to create radlee-processed label: " + e.message);
     }
     
-    propsService.setProperty("VAULT_FOLDER_ID", vaultFolder.getId());
-    propsService.setProperty("APPROVED_FOLDER_ID", approvedFolder.getId());
-    propsService.setProperty("ASSISTANT_NAME", "Radlee");
+    propsService.setProperties({
+      "VAULT_FOLDER_ID": vaultFolder.getId(),
+      "APPROVED_FOLDER_ID": approvedFolder.getId(),
+      "ASSISTANT_NAME": "Radlee"
+    });
     
     setupTriggers();
     
