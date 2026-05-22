@@ -84,8 +84,10 @@ This is **expected and completely normal.** Because you are setting this up on y
 
 ## 🛠️ Step-by-Step Setup (~20 Minutes)
 
-### Step 1: Set Up Your Google Account
-We recommend running Radlee in a dedicated Google Workspace account (or creating a fresh, free personal Gmail account) if you want to keep the AI's files, tasks, and calendar events separate from your personal life. This account's email address will be the "Radlee email address" you communicate with.
+### Step 1: Prepare Your Google Account
+Radlee should be installed on your **primary Google account**. This ensures that when Radlee creates Calendar events or Google Tasks, they appear natively on your actual calendar and task lists.
+
+To keep Radlee's emails from cluttering your inbox, we use an **Email Alias**. If your email is `jane@gmail.com`, you will communicate with Radlee by emailing `jane+radlee@gmail.com`. Radlee will automatically detect and configure this alias during setup.
 
 ### Step 2: Create a Google Apps Script Project
 1. Go to [script.google.com](https://script.google.com) and click **New Project**.
@@ -145,7 +147,7 @@ This sets up Radlee's internal timer so it checks your inbox every minute. It al
 
 ### Step 6: Start Emailing!
 1. Open Gmail.
-2. Compose a new email to the Radlee email address you configured during setup.
+2. Compose a new email to your Radlee email alias (e.g., `jane+radlee@gmail.com`).
 3. Ask it to do something, and Radlee will reply within a minute or two!
 
 ### Step 7: The "Test Flight" Checklist ✈️

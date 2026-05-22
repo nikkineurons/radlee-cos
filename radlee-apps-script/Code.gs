@@ -1445,7 +1445,16 @@ function initializeAgent() {
   // Automatically retrieve the current user's email if not explicitly set
   const currentEmail = Session.getEffectiveUser().getEmail();
   const ownerEmail = props.OWNER_EMAIL || currentEmail;
-  const radleeEmail = props.RADLEE_EMAIL || currentEmail;
+  
+  let radleeEmail = props.RADLEE_EMAIL;
+  if (!radleeEmail) {
+    const parts = currentEmail.split('@');
+    if (parts.length === 2 && !parts[0].includes('+')) {
+      radleeEmail = `${parts[0]}+radlee@${parts[1]}`;
+    } else {
+      radleeEmail = currentEmail; // Fallback
+    }
+  }
 
   if (!apiKey) {
     console.error("❌ Setup Failed: Please add GEMINI_API_KEY in Project Settings -> Script Properties");
