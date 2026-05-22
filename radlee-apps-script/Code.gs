@@ -31,7 +31,7 @@ const ACTION_REGISTRY = {
   STRATEGY_PRIMER: { type: "WRITE", desc: "Generate a strategic alignment primer", params: [] },
   SEARCH_CONTACTS: { type: "READ", desc: "Search for a person's email address by name", params: ["query"] },
   LEARN: { type: "WRITE", desc: "Log a key insight in the long-term memory", params: ["learning"] },
-  UPDATE_PREFERENCE: { type: "WRITE", desc: "Log a user preference", params: ["preference"] },
+
   INCUBATE: { type: "WRITE", desc: "Add to Someday/Maybe list", params: ["description"] },
   READ_DOC: { type: "READ", desc: "Read a document from the vault", params: ["doc_name"] },
   LIST_FOLDER_FILES: { type: "READ", desc: "List all files in a specific folder", params: ["folder_name"] },
@@ -257,8 +257,8 @@ function processAgentRequest(userInput, sessionHistory = []) {
 
     // --- NODE 3: ACTION EXECUTOR ---
     let adaptiveFeedbackInstruction = "";
-    if (userInput.toLowerCase().includes("no,") || userInput.toLowerCase().includes("instead") || userInput.toLowerCase().includes("actually") || userInput.toLowerCase().includes("prefer")) {
-      adaptiveFeedbackInstruction = "\n[ADAPTIVE FEEDBACK TRIGGERED]: The user's input appears to contain a correction or preference. You MUST include an 'UPDATE_PREFERENCE' action in your array to permanently log this preference in the User Preferences document.";
+    if (userInput.toLowerCase().includes("no,") || userInput.toLowerCase().includes("instead") || userInput.toLowerCase().includes("actually")) {
+      adaptiveFeedbackInstruction = "\n[ADAPTIVE FEEDBACK TRIGGERED]: The user's input appears to contain a correction. Acknowledge the correction and apply it to their request.";
     }
 
     const synthesizerPrompt = getSystemPrompt(SETTINGS.VAULT_ID, SETTINGS.USER_NAME) + `
@@ -344,11 +344,6 @@ function handleStructuredRouting(action, params, SETTINGS) {
       requireParam("learning");
       if (missing.length) return `⚠️ Parameter Error: Missing required param [${missing.join(", ")}] for action ${action}. Ask user to clarify or supply the param.`;
       return appendToLongTermMemory(params.learning, SETTINGS.VAULT_ID);
-
-    case "UPDATE_PREFERENCE":
-      requireParam("preference");
-      if (missing.length) return `⚠️ Parameter Error: Missing required param [${missing.join(", ")}] for action ${action}. Ask user to clarify or supply the param.`;
-      return appendToUserPreferences(params.preference, SETTINGS.VAULT_ID);
 
     case "INCUBATE":
       requireParam("description");
@@ -550,7 +545,7 @@ function gatherVaultContext(vaultId) {
   const cached = cache.get(cacheKey);
   if (cached) return cached;
 
-  const files = ["03_Dynamic_Memory", "04_User_Preferences"];
+  const files = ["03_Dynamic_Memory"];
   const context = files.map(f => `[${f}]: ${getVaultContent(f, vaultId)}`).join("\n");
 
   try { cache.put(cacheKey, context, CONFIG.VAULT_CACHE_TIME); } catch(e) { /* context too large to cache */ }
@@ -632,30 +627,7 @@ function appendToLongTermMemory(learning, vaultId) {
   }
 }
 
-function appendToUserPreferences(preference, vaultId) {
-  const lock = LockService.getScriptLock();
-  if (!lock.tryLock(5000)) return "⚠️ Vault busy. Try again in a moment.";
-  try {
-    const folder = DriveApp.getFolderById(vaultId);
-    const files = folder.getFilesByName('04_User_Preferences');
-    let doc;
-    if (files.hasNext()) {
-      doc = DocumentApp.openById(files.next().getId());
-    } else {
-      doc = DocumentApp.create('04_User_Preferences');
-      try {
-        DriveApp.getFileById(doc.getId()).moveTo(folder);
-      } catch (moveToErr) {
-        console.warn("Could not move User Preferences doc to vault: " + moveToErr.message);
-      }
-    }
-    doc.getBody().appendParagraph(`- ${preference}`);
-    invalidateVaultCache(vaultId);
-    return `⚙️ **Preference Saved:** Added to User Preferences.`;
-  } finally {
-    lock.releaseLock();
-  }
-}
+
 
 function appendToIncubate(item, vaultId) {
   const lock = LockService.getScriptLock();
@@ -1385,7 +1357,7 @@ function runSystemCheck() {
         report += `✅ VAULT FOLDER: Connected - "${folder.getName()}" (ID: ${vaultId})\n`;
         
         const vaultDocs = ["00_System_Prompt","01_Strategic_Context","02_Operating_Principles",
-                           "03_Dynamic_Memory","04_User_Preferences","05_Areas_of_Focus","06_Someday_Maybe"];
+                           "03_Dynamic_Memory","05_Areas_of_Focus","06_Someday_Maybe"];
         report += "\nVAULT FILES:\n";
         vaultDocs.forEach(name => {
           const files = folder.getFilesByName(name);
@@ -1507,9 +1479,7 @@ Please protect my calendar by ensuring I have at least [NUMBER] hours of uninter
 When I am feeling overwhelmed by my task list, remind me to [E.G., DO A MIND SWEEP / TAKE A WALK / REVIEW MY HORIZONS].`,
       "03_Dynamic_Memory": `# Dynamic Memory
 Stored project notes and key insights.`,
-      "04_User_Preferences": `# User Preferences
-USER_NAME: ${userName}
-ASSISTANT_NAME: Radlee`,
+
       "05_Areas_of_Focus": `# Areas of Focus
 *Getting Things Done (GTD) Horizon 2: Areas of Focus and Accountability.*
 Fill in the blanks below to define the key domains of your life and work that you need to maintain to be successful. 

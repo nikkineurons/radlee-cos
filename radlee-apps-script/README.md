@@ -120,7 +120,7 @@ By filling out these Mad Libs exercises, you are practicing **System Prompting**
 | `01_Strategic_Context` | *(Mad Libs Exercise)* Fill in the blanks to define your GTD Horizons of Focus (Purpose, Vision, Goals). |
 | `02_Operating_Principles` | *(Mad Libs Exercise)* Fill in the blanks to set rules for your energy, boundaries, and communication. |
 | `03_Dynamic_Memory` | Leave blank—Radlee writes here automatically when it learns something. |
-| `04_User_Preferences` | Leave blank—Radlee writes here automatically. |
+
 | `05_Areas_of_Focus` | *(Mad Libs Exercise)* Fill in the blanks to define the key domains of your life and work (GTD Horizon 2). |
 | `06_Someday_Maybe` | Leave blank—Radlee adds items here when you say "save this for later." |
 | `07_Context_Folders` | *(Configuration)* Add the names and IDs of other Google Drive folders you want Radlee to be able to read (e.g. project folders or team drives). |
@@ -151,7 +151,7 @@ This sets up Radlee's internal timer so it checks your inbox every minute. It al
 ### Step 7: The "Test Flight" Checklist ✈️
 As soon as Radlee is set up, try sending it these exact emails one by one to verify everything is working properly. Wait for Radlee to reply to each before sending the next.
 
-- [ ] **Test the long-term memory:** Email Radlee and say: *"Save to vault: I prefer my meetings to be 45 minutes long instead of 60."* (Verify it replies confirming it learned this, and check that `04_User_Preferences` was updated in your Google Drive).
+
 - [ ] **Test the context router:** Email Radlee and say: *"What are my current professional goals?"* (Verify it successfully reads your `01_Strategic_Context` document and replies with your goals).
 - [ ] **Test taking action:** Email Radlee and say: *"Add a task for me to review the Q3 budget tomorrow."* (Verify it replies confirming the task, and check that it appears in your Google Tasks).
 - [ ] **Test strategy primer:** Email Radlee and say: *"Send me my strategic alignment primer."* (Verify it analyzes your Vault and sends a strategic brief).
