@@ -104,8 +104,9 @@ function processEmailInbox() {
         logAuditActivity("Email_Poller", "Error", rawText.substring(0, 100), err.message, "FAIL");
       }
 
-      // Reply to the thread
-      thread.reply(responseText || "✅ Done.");
+      // Send a separate email instead of replying to break the thread
+      const responseSubject = subject ? `Radlee: ${subject}` : "Radlee Response";
+      GmailApp.sendEmail(SETTINGS.OWNER_EMAIL, responseSubject, responseText || "✅ Done.");
       
       logAuditActivity("Email_Poller", "Processed_Email", rawText.substring(0, 100), responseText.substring(0, 100), "Success");
     }
