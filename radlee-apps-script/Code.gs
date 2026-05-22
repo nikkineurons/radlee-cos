@@ -998,22 +998,24 @@ function processVoicemail(base64Data, mimeType, textContext) {
               "params": {
                 "type": "OBJECT",
                 "properties": {
-                  "title":     { "type": "STRING" },
-                  "iso":       { "type": "STRING" },
+                  "title":     { "type": "STRING", "description": "Title of the task or event." },
+                  "iso":       { "type": "STRING", "description": "ISO 8601 formatted datetime string for the start of the event (e.g. 2026-05-21T15:00:00Z). REQUIRED for CALENDAR actions." },
+                  "duration_mins": { "type": "INTEGER", "description": "Duration of the event in minutes. Defaults to 30 if omitted." },
+                  "rrule":     { "type": "STRING", "description": "Optional RFC5545 RRULE string for recurring events (e.g. FREQ=DAILY;COUNT=5). Do NOT include 'RRULE:' prefix." },
                   "recipient": { "type": "STRING" },
                   "subject":   { "type": "STRING" },
                   "body":      { "type": "STRING" },
                   "notes":     { "type": "STRING" },
-                  "doc_name":  { "type": "STRING" },
-                  "content":   { "type": "STRING" },
+                  "doc_name":  { "type": "STRING", "description": "Name of the document to create or read." },
+                  "content":   { "type": "STRING", "description": "The full text content to write into the document. If drafting a document, you must generate the full body text here." },
                   "learning":  { "type": "STRING" },
                   "preference":{ "type": "STRING" },
                   "description":{ "type": "STRING" },
-                  "guests":    { "type": "STRING" }
+                  "guests":    { "type": "STRING", "description": "Comma-separated list of email addresses for attendees." }
                 }
               }
             },
-            "required": ["action"]
+            "required": ["action", "params"]
           }
         },
         "final_answer": { "type": "STRING" }
