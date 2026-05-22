@@ -6,17 +6,9 @@ Radlee is both an AI Chief of Staff that helps manage your daily tasks and a **"
 
 Underneath the hood, Radlee strictly follows the [**Getting Things Done**(GTD)](https://www.amazon.com/Getting-Things-Done-Stress-Free-Productivity/dp/0143126563) methodology. It is pre-programmed to align your daily execution with your "Horizons of Focus" (your long-term purpose, vision, and goals) and conduct proactive Weekly Reviews to keep your life organized.
 
-You can set Radlee up in about 20 minutes to get a fully functional, zero-cost, email-based AI assistant. From there, your adventure begins:
+You can set Radlee up in about 20 minutes to get a fully functional, zero-cost, email-based AI assistant. Radlee lives entirely inside **your Email inbox**—where you already work. There are no new apps to open, and no dashboards to learn. Just email it, and things get done.
 
-- **Level 1 (No-Code Explorer):** You don't need to write a single line of code to make Radlee yours. By simply filling out the Mad Libs-style "Vault" documents in Google Drive, you can:
-  - Redesign Radlee's personality, tone, and decision-making framework.
-  - Define your GTD Horizons of Focus so Radlee knows what truly matters to you.
-  - Set strict operating principles (e.g., "Don't let me schedule meetings before 10 AM").
-  - Establish your Areas of Focus so Radlee can warn you if a key life domain is being neglected.
-- **Level 2 (Low-Code Tinkerer):** Modify the underlying `Code.gs` script to add new scheduled emails, adjust the prompts, or give Radlee new native Google Workspace skills (like reading your Calendar or logging to Sheets).
-- **Level 3 (Pro-Code Engineer):** Build advanced integrations like a Vector Database for infinite memory, or trigger external webhooks securely (like Zapier, Make.com, or Vercel).
-
-Radlee lives entirely inside **your Email inbox**—where you already work. There are no new apps to open, and no dashboards to learn. Just email it, and things get done.
+From there, you can explore **The Radlee Curriculum** to learn how Agentic AI works under the hood. You'll progress from No-Code Prompt Engineering up to Pro-Code integrations!
 
 ---
 
@@ -111,7 +103,7 @@ To keep Radlee's emails from cluttering your inbox, we use an **Email Alias**. I
 
 Radlee will automatically create a **`Radlee Vault`** and a **`Radlee Approved Outbox`** folder in your Google Drive. It will also create 7 initial documents for you!
 
-### Step 4: Prompt Engineering 101 (Fill In Your Vault)
+### Step 4: The Radlee Curriculum - Level 1 (Prompt Engineering)
 Open the **`Radlee Vault`** folder in your Google Drive. You'll find 7 documents. These documents are injected directly into Radlee's "Context Window" every time you email it. 
 
 By filling out these Mad Libs exercises, you are practicing **System Prompting** and **Context Injection**. You are literally programming the AI's brain using plain English.
@@ -148,33 +140,30 @@ This sets up Radlee's internal timer so it checks your inbox every minute. It al
 ### Step 6: Start Emailing!
 1. Open Gmail.
 2. Compose a new email to your Radlee email alias (e.g., `jane+radlee@gmail.com`).
-3. Ask it to do something, and Radlee will reply within a minute or two!
+3. **Always include a subject line** (e.g., "Radlee Request" or "Tasks") so your mail client doesn't complain. Put your actual instructions in the body of the email.
+4. Ask it to do something, and Radlee will reply within a minute or two!
 
-### Step 7: The "Test Flight" Checklist ✈️
-As soon as Radlee is set up, try sending it these exact emails one by one to verify everything is working properly. Wait for Radlee to reply to each before sending the next.
+### Step 7: The Multi-Action Test Flight ✈️
+As soon as Radlee is set up, try sending it a single email with multiple instructions to see its batch-processing power in action. 
 
+Send Radlee an email that says exactly this:
+*"What are my current professional goals? Also, add a task for me to review the Q3 budget tomorrow, send me my strategic alignment primer, and draft a new document called 'Project Alpha' with a brief outline for a new mobile app."*
 
-- [ ] **Test the context router:** Email Radlee and say: *"What are my current professional goals?"* (Verify it successfully reads your `01_Strategic_Context` document and replies with your goals).
-- [ ] **Test taking action:** Email Radlee and say: *"Add a task for me to review the Q3 budget tomorrow."* (Verify it replies confirming the task, and check that it appears in your Google Tasks).
-- [ ] **Test strategy primer:** Email Radlee and say: *"Send me my strategic alignment primer."* (Verify it analyzes your Vault and sends a strategic brief).
-- [ ] **Test document drafting:** Email Radlee and say: *"Draft a new document called 'Project Alpha' with a brief outline for a new mobile app."* (Verify it creates the document in your Vault).
-- [ ] **Test external context folders:** Add a new Folder Name and Folder ID to the `07_Context_Folders` sheet in your Vault. Email Radlee and say: *"What are the contents of the [Folder Name] folder?"* or *"Summarize the file [File Name] in the [Folder Name] folder."* (Verify Radlee successfully accesses the external folder and reads the file).
+Radlee will process all of these instructions simultaneously and reply with a summary of its actions!
 
 ---
 
-# 💻 Developer Guide (Choose Your Own Adventure)
+# 💻 The Radlee Curriculum (Level Up Your AI Skills)
 
 *For those who want to look at the code and extend what Radlee can do.*
 
-Radlee is built to be broken, extended, and improved. Because it relies on raw API calls rather than a complex framework, you have complete control over how it works. 
-
-We have prepared three specific "Adventures" designed to teach you how to level up the project using AI-assisted coding tools. You do not need to be a senior software engineer to complete these—the guides will teach you how to use AI to write the code for you!
+Radlee is built to be broken, extended, and improved. Because it relies on raw API calls rather than a complex framework, you have complete control over how it works. We have prepared three specific "Adventures" designed to teach you how to level up the project using AI-assisted coding tools. You do not need to be a senior software engineer to complete these!
 
 Choose your path based on your Level:
 
-- 🧩 **[Level 2 (Low-Code Tinkerer): Add a New Action](docs/adventures/01-add-new-action.md)** — Learn how to give Radlee a new native Google Workspace skill, like reading your Calendar or logging to Google Sheets.
-- 🧠 **[Level 3 (Pro-Code Engineer): Build a Vector Database](docs/adventures/02-vector-database.md)** — Learn how to replace document reading with semantic similarity search for infinite memory.
-- 🔄 **[Level 3 (Pro-Code Engineer): Trigger External Webhooks Safely](docs/adventures/03-external-api-webhooks.md)** — Learn how to build a highly secure, deterministic webhook architecture to trigger workflows in tools like Zapier, Make.com, or Vercel.
+- 🧩 **Level 2 (Low-Code Tinkerer): [Add a New Action](docs/adventures/01-add-new-action.md)** — Learn how to give Radlee a new native Google Workspace skill, like reading your Calendar or logging to Google Sheets.
+- 🧠 **Level 3 (Pro-Code Engineer): [Build a Vector Database](docs/adventures/02-vector-database.md)** — Learn how to replace document reading with semantic similarity search for infinite memory.
+- 🔄 **Level 3 (Pro-Code Engineer): [Trigger External Webhooks Safely](docs/adventures/03-external-api-webhooks.md)** — Learn how to build a highly secure, deterministic webhook architecture to trigger workflows in tools like Zapier, Make.com, or Vercel.
 
 ## Repository Structure
 
