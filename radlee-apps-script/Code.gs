@@ -21,16 +21,17 @@ const CONFIG = {
 // of an action from its execution code, we ensure the LLM can only trigger
 // pre-approved functions, preventing rogue executions.
 const ACTION_REGISTRY = {
-  TASK: { type: "WRITE", desc: "Create a Google Task", params: ["title", "notes"] },
-  CALENDAR: { type: "WRITE", desc: "Schedule an event", params: ["title", "iso", "duration_mins", "guests"] },
+  TASK: { type: "WRITE", desc: "Create a Google Task", params: ["title"] },
+  CALENDAR: { type: "WRITE", desc: "Schedule an event", params: ["title", "iso"] },
   EMAIL: { type: "WRITE", desc: "Draft an email", params: ["recipient", "subject", "body"] },
   DOC: { type: "WRITE", desc: "Create a new document", params: ["doc_name", "content"] },
   APPROVE_DOC: { type: "WRITE", desc: "Move doc to Approved folder", params: ["doc_name"] },
   PDF_EMAIL: { type: "WRITE", desc: "Convert doc to PDF and draft email", params: ["doc_name", "recipient", "subject", "body"] },
   AREAS_CHECKIN: { type: "READ", desc: "Review areas of focus", params: [] },
-  SCOUT_EVENTS: { type: "WRITE", desc: "Search web for upcoming events", params: [] },
+  STRATEGY_PRIMER: { type: "WRITE", desc: "Generate a strategic alignment primer", params: [] },
   SEARCH_CONTACTS: { type: "READ", desc: "Search for a person's email address by name", params: ["query"] },
   LEARN: { type: "WRITE", desc: "Log a key insight in the long-term memory", params: ["learning"] },
+  UPDATE_PREFERENCE: { type: "WRITE", desc: "Log a user preference", params: ["preference"] },
   INCUBATE: { type: "WRITE", desc: "Add to Someday/Maybe list", params: ["description"] },
   READ_DOC: { type: "READ", desc: "Read a document from the vault", params: ["doc_name"] },
   LIST_FOLDER_FILES: { type: "READ", desc: "List all files in a specific folder", params: ["folder_name"] },
@@ -195,6 +196,7 @@ function processAgentRequest(userInput, sessionHistory = []) {
                   "doc_name":  { "type": "STRING" },
                   "content":   { "type": "STRING" },
                   "learning":  { "type": "STRING" },
+                  "preference":{ "type": "STRING" },
                   "description":{ "type": "STRING" },
                   "guests":    { "type": "STRING", "description": "Comma-separated list of email addresses for attendees." }
                 }
@@ -256,7 +258,7 @@ function processAgentRequest(userInput, sessionHistory = []) {
     // --- NODE 3: ACTION EXECUTOR ---
     let adaptiveFeedbackInstruction = "";
     if (userInput.toLowerCase().includes("no,") || userInput.toLowerCase().includes("instead") || userInput.toLowerCase().includes("actually") || userInput.toLowerCase().includes("prefer")) {
-      adaptiveFeedbackInstruction = "\n[ADAPTIVE FEEDBACK TRIGGERED]: The user's input appears to contain a correction or preference. You MUST include a 'LEARN' action in your array to permanently log this preference in the long-term memory.";
+      adaptiveFeedbackInstruction = "\n[ADAPTIVE FEEDBACK TRIGGERED]: The user's input appears to contain a correction or preference. You MUST include an 'UPDATE_PREFERENCE' action in your array to permanently log this preference in the User Preferences document.";
     }
 
     const synthesizerPrompt = getSystemPrompt(SETTINGS.VAULT_ID, SETTINGS.USER_NAME) + `
@@ -342,6 +344,11 @@ function handleStructuredRouting(action, params, SETTINGS) {
       requireParam("learning");
       if (missing.length) return `⚠️ Parameter Error: Missing required param [${missing.join(", ")}] for action ${action}. Ask user to clarify or supply the param.`;
       return appendToLongTermMemory(params.learning, SETTINGS.VAULT_ID);
+
+    case "UPDATE_PREFERENCE":
+      requireParam("preference");
+      if (missing.length) return `⚠️ Parameter Error: Missing required param [${missing.join(", ")}] for action ${action}. Ask user to clarify or supply the param.`;
+      return appendToUserPreferences(params.preference, SETTINGS.VAULT_ID);
 
     case "INCUBATE":
       requireParam("description");
@@ -620,6 +627,31 @@ function appendToLongTermMemory(learning, vaultId) {
     doc.getBody().appendParagraph(`[${new Date().toLocaleDateString()}]: ${learning}`);
     invalidateVaultCache(vaultId); // Expire cache so next read is fresh
     return `🧠 **Memory Updated:** Committed to Dynamic Learnings.`;
+  } finally {
+    lock.releaseLock();
+  }
+}
+
+function appendToUserPreferences(preference, vaultId) {
+  const lock = LockService.getScriptLock();
+  if (!lock.tryLock(5000)) return "⚠️ Vault busy. Try again in a moment.";
+  try {
+    const folder = DriveApp.getFolderById(vaultId);
+    const files = folder.getFilesByName('04_User_Preferences');
+    let doc;
+    if (files.hasNext()) {
+      doc = DocumentApp.openById(files.next().getId());
+    } else {
+      doc = DocumentApp.create('04_User_Preferences');
+      try {
+        DriveApp.getFileById(doc.getId()).moveTo(folder);
+      } catch (moveToErr) {
+        console.warn("Could not move User Preferences doc to vault: " + moveToErr.message);
+      }
+    }
+    doc.getBody().appendParagraph(`- ${preference}`);
+    invalidateVaultCache(vaultId);
+    return `⚙️ **Preference Saved:** Added to User Preferences.`;
   } finally {
     lock.releaseLock();
   }
@@ -939,6 +971,7 @@ function processVoicemail(base64Data, mimeType, textContext) {
                   "doc_name":  { "type": "STRING" },
                   "content":   { "type": "STRING" },
                   "learning":  { "type": "STRING" },
+                  "preference":{ "type": "STRING" },
                   "description":{ "type": "STRING" },
                   "guests":    { "type": "STRING" }
                 }
