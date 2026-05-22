@@ -1,21 +1,21 @@
-# Radlee — The "Choose Your Own Adventure" AI Enablement Project
+# Radlee — The CYOA AI Enablement Project
 
 **An autonomous, email-based AI Chief of Staff that lives in your inbox and executes tasks using the Getting Things Done (GTD) methodology.**
 
-Radlee is both an AI Chief of Staff that helps manage your daily tasks and a **"Choose Your Own Adventure" AI project** designed for anyone who wants to learn how AI works under the hood.
+Radlee is both an AI Chief of Staff that helps manage your daily tasks and a ** Choose-Your-Own-Adventure style AI project** designed for anyone who wants hands-on experience building Agentic AI.
 
-Underneath the hood, Radlee strictly follows the [**Getting Things Done**(GTD)](https://www.amazon.com/Getting-Things-Done-Stress-Free-Productivity/dp/0143126563) methodology. It is pre-programmed to align your daily execution with your "Horizons of Focus" (your long-term purpose, vision, and goals) and conduct proactive Weekly Reviews to keep your life organized.
+Underneath the hood, Radlee strictly follows the [**Getting Things Done**(GTD)](https://www.amazon.com/Getting-Things-Done-Stress-Free-Productivity/dp/0143126563) methodology created by personal productivity expert, David Allen. It is pre-programmed to align your daily execution with your "Horizons of Focus" (your long-term purpose, vision, and goals) and conduct proactive Weekly Reviews to keep your life organized.
 
 You can set Radlee up in about 20 minutes to get a fully functional, zero-cost, email-based AI assistant. Radlee lives entirely inside **your Email inbox**—where you already work. There are no new apps to open, and no dashboards to learn. Just email it, and things get done.
 
-From there, you can explore **The Radlee Curriculum** to learn how Agentic AI works under the hood. You'll progress from No-Code Prompt Engineering up to Pro-Code integrations!
+From there, you can explore **The Radlee Curriculum** to learn how Agentic AI works under the hood. You'll progress from No-Code Prompt Engineering up to Pro-Code integrations 🤖
 
 ---
 
 ## ✨ Core Features & Benefits
 
 - 🔒 **Secure, Email-Only Interface:** Radlee only talks to you. It securely checks every incoming email to ensure it came from your approved address. If anyone else tries to email it, Radlee ignores them.
-- 💸 **Ultra Low-Cost:** Radlee is designed to be incredibly cheap to run. By carefully managing how it thinks and reads your documents, it keeps API costs well under $5 a day—often just pennies!
+- 💸 **Ultra Low-Cost:** Radlee is designed to be incredibly cheap to run. By carefully managing how it thinks and reads your documents, it keeps API costs well under $1 a day and typically within free quota limits.
 - 📅 **Takes Real Action:** Radlee doesn't just chat. It can schedule meetings on your Google Calendar, create Google Tasks, draft Gmail replies, and write Google Docs.
 - 🎯 **Understands Your Goals (GTD Alignment):** Radlee reads your "Vault" documents to understand your professional goals and GTD Horizons, ensuring its advice actually helps you succeed.
 
@@ -26,12 +26,11 @@ From there, you can explore **The Radlee Curriculum** to learn how Agentic AI wo
 
 ## 🎓 Core Concepts You Will Learn
 
-Radlee isn't magic; it's a collection of robust engineering patterns. By using and modifying Radlee, you will learn how to build reliable AI systems:
+By using and modifying Radlee, you will learn how to build reliable AI systems:
 
 - 🧠 **ReAct (Reason and Act) Pipeline:** Learn how to build a strict two-step pipeline. Radlee first determines what context it needs and reads it, and only then does it reason and act. You'll learn how this eliminates hallucinations and reduces the high costs associated with open-ended AI reasoning loops.
 - 🚦 **Rule-Based Guardrails:** Discover how to blend AI autonomy with deterministic safety. Radlee scores its own confidence; if it drops below 85% on a high-stakes action (like sending an email), a hardcoded safety rule safely downgrades the action to a draft task for human review.
 - 🔁 **RAG (Retrieval-Augmented Generation) & Long-Term Memory:** Learn how AI can "remember" things. When you correct Radlee, it programmatically writes your preference to a Google Doc, and retrieves that doc on the next run, creating a continuous learning loop.
-- 📝 **Deterministic Webhooks & Native Integrations:** Learn how to securely map LLM outputs to native API calls (like drafting Gmails or converting Docs to PDFs) without letting the LLM hallucinate external URLs.
 - 🛡️ **Idempotency (Duplicate-Proof Execution):** Ever worry an AI might glitch and send the same email 100 times? You will learn how to build "Idempotency locks" to guarantee an LLM can never double-book a meeting or create duplicate tasks, even if it loops.
 - 🚦 **Concurrency (Safe Memory Writing):** Learn how to manage Race Conditions. If you email Radlee three thoughts at the exact same time, it uses a "LockService" to politely queue them up and write them to your memory documents one by one without scrambling data.
 
@@ -44,7 +43,7 @@ Once set up, Radlee acts as an autonomous email assistant. Just email it like yo
 **Execution Examples:**
 | Say... | Radlee does... |
 |---|---|
-| *"Schedule a lunch with Regina on Tuesday at 2pm"* | Creates a Google Calendar event |
+| *"Schedule lunch with Reginald on Tuesday at 2pm"* | Creates a Google Calendar event |
 | *"Add a task: follow up with contacts from the Sony event"* | Adds to Google Tasks |
 | *"Draft an email to Sarah about the new book club announcement"* | Creates a Gmail draft |
 | *"What should I be focused on right now?"* | Sends 3 aligned next actions |
@@ -77,7 +76,7 @@ This is **expected and completely normal.** Because you are setting this up on y
 ## 🛠️ Step-by-Step Setup (~20 Minutes)
 
 ### Step 1: Prepare Your Google Account
-Radlee should be installed on your **primary Google account**. This ensures that when Radlee creates Calendar events or Google Tasks, they appear natively on your actual calendar and task lists.
+Radlee should be installed on your **active Google account**. This ensures that when Radlee creates Calendar events or Google Tasks, they appear natively on calendar and task lists that are already in your workflow.
 
 To keep Radlee's emails from cluttering your inbox, we use an **Email Alias**. If your email is `jane@gmail.com`, you will communicate with Radlee by emailing `jane+radlee@gmail.com`. Radlee will automatically detect and configure this alias during setup.
 
@@ -101,7 +100,7 @@ To keep Radlee's emails from cluttering your inbox, we use an **Email Alias**. I
 5. Click through the Google authorization prompts. *(This is where you will see the "unsafe" warning mentioned above.)*
 6. At the bottom of the screen, you will see an "Execution Log". Wait until it says "✅ Radlee Initialized Successfully!".
 
-Radlee will automatically create a **`Radlee Vault`** and a **`Radlee Approved Outbox`** folder in your Google Drive. It will also create 7 initial documents for you!
+Radlee will automatically create a **`Radlee Vault`** and a **`Radlee Approved Outbox`** folder in your Google Drive. It will also create 7 initial documents for you...
 
 ### Step 4: The Radlee Curriculum - Level 1 (Prompt Engineering)
 Open the **`Radlee Vault`** folder in your Google Drive. You'll find 7 documents. These documents are injected directly into Radlee's "Context Window" every time you email it. 
@@ -115,7 +114,7 @@ By filling out these Mad Libs exercises, you are practicing **System Prompting**
 | `02_Operating_Principles` | *(Mad Libs Exercise)* Fill in the blanks to set rules for your energy, boundaries, and communication. |
 | `03_Dynamic_Memory` | Leave blank—Radlee writes here automatically when it learns something. |
 
-| `05_Areas_of_Focus` | *(Mad Libs Exercise)* Fill in the blanks to define the key domains of your life and work (GTD Horizon 2). |
+| `05_Areas_of_Focus` | *(Mad Libs Exercise)* Fill in the blanks to define the key domains of your life and work. |
 | `06_Someday_Maybe` | Leave blank—Radlee adds items here when you say "save this for later." |
 | `07_Context_Folders` | *(Configuration)* Add the names and IDs of other Google Drive folders you want Radlee to be able to read (e.g. project folders or team drives). |
 
@@ -162,9 +161,9 @@ Radlee will process all of these instructions simultaneously and reply with a su
 
 # 💻 The Radlee Curriculum (Level Up Your AI Skills)
 
-*For those who want to look at the code and extend what Radlee can do.*
+*Adventures for those who want to look at the code and extend what Radlee can do.*
 
-Radlee is built to be broken, extended, and improved. Because it relies on raw API calls rather than a complex framework, you have complete control over how it works. We have prepared three specific "Adventures" designed to teach you how to level up the project using AI-assisted coding tools. You do not need to be a senior software engineer to complete these!
+Radlee is built to be broken, extended, and improved. Because it relies on raw API calls rather than a complex framework, you have complete control over how it works. Here are three specific "Adventures" designed to teach you how to level up the project using AI-assisted coding tools.
 
 Choose your path based on your Level:
 
