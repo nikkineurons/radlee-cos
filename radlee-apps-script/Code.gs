@@ -71,6 +71,7 @@ function processEmailInbox() {
       if (!toField.toLowerCase().includes(SETTINGS.RADLEE_EMAIL.toLowerCase())) {
         thread.addLabel(label);
         thread.markRead();
+        thread.moveToArchive(); // Skips the primary inbox
         continue;
       }
 
@@ -78,6 +79,7 @@ function processEmailInbox() {
       // This prevents infinite loops if the LLM or API errors out later.
       thread.addLabel(label);
       thread.markRead();
+      thread.moveToArchive(); // Skips the primary inbox
 
       const subject = lastMessage.getSubject() || "";
       const bodyText = lastMessage.getPlainBody() || "";
