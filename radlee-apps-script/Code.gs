@@ -425,6 +425,19 @@ function handleStructuredRouting(action, params, SETTINGS) {
 
 // --- 5. ENGINE (Gemini API) ---
 
+function fetchWithRetry(url, options, maxRetries = 3) {
+  for (let i = 0; i < maxRetries; i++) {
+    const res = UrlFetchApp.fetch(url, options);
+    const code = res.getResponseCode();
+    if (code === 429 || code >= 500) {
+      if (i === maxRetries - 1) return res;
+      Utilities.sleep(Math.pow(2, i) * 2000 + Math.random() * 1000);
+      continue;
+    }
+    return res;
+  }
+}
+
 // Standard free-text call (used for Weekly Review, Next Actions)
 function callGemini(systemPrompt, contentsArray, apiKey, search = false) {
   const url = `https://generativelanguage.googleapis.com/v1beta/models/${CONFIG.MODEL_VERSION}:generateContent?key=${apiKey}`;
@@ -441,14 +454,14 @@ function callGemini(systemPrompt, contentsArray, apiKey, search = false) {
   if (search) payload.tools = [{ "google_search": {} }];
 
   const options = { "method": "post", "contentType": "application/json", "payload": JSON.stringify(payload), "muteHttpExceptions": true };
-  const res = UrlFetchApp.fetch(url, options);
+  const res = fetchWithRetry(url, options);
   
   if (res.getResponseCode() !== 200) {
     // If the API throws 400 Invalid argument on a search payload, it's likely a Free Tier billing limitation. Retry without tools.
     if (search && res.getResponseCode() === 400) {
       delete payload.tools;
       options.payload = JSON.stringify(payload);
-      const fallbackRes = UrlFetchApp.fetch(url, options);
+      const fallbackRes = fetchWithRetry(url, options);
       if (fallbackRes.getResponseCode() !== 200) {
         const fallbackJson = JSON.parse(fallbackRes.getContentText());
         throw new Error(fallbackJson.error ? fallbackJson.error.message : "API Fail");
@@ -484,7 +497,7 @@ function callGeminiStructured(systemPrompt, contentsArray, apiKey, responseSchem
   };
 
   const options = { "method": "post", "contentType": "application/json", "payload": JSON.stringify(payload), "muteHttpExceptions": true };
-  const res = UrlFetchApp.fetch(url, options);
+  const res = fetchWithRetry(url, options);
   const json = JSON.parse(res.getContentText());
   if (res.getResponseCode() !== 200) throw new Error(json.error ? json.error.message : "Structured API Fail");
 
