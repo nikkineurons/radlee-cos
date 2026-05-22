@@ -430,7 +430,11 @@ function callGemini(systemPrompt, contentsArray, apiKey, search = false) {
 
   const payload = {
     "systemInstruction": { "parts": [{ "text": systemPrompt }] },
-    "contents": contentsArray
+    "contents": contentsArray,
+    "generationConfig": {
+      "maxOutputTokens": 8192,
+      "temperature": 0.4
+    }
   };
 
   if (search) payload.tools = [{ "google_search": {} }];
@@ -472,7 +476,9 @@ function callGeminiStructured(systemPrompt, contentsArray, apiKey, responseSchem
     "contents": contentsArray,
     "generationConfig": {
       "responseMimeType": "application/json",
-      "responseSchema": responseSchema
+      "responseSchema": responseSchema,
+      "maxOutputTokens": 8192,
+      "temperature": 0.1
     }
   };
 
