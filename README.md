@@ -2,7 +2,7 @@
 
 **An autonomous, email-based AI Chief of Staff that lives in your inbox and executes tasks using the Getting Things Done (GTD) methodology.**
 
-Radlee is both an AI Chief of Staff that helps manage your daily tasks and a ** Choose-Your-Own-Adventure style AI project** designed for anyone who wants hands-on experience building Agentic AI.
+Radlee is both an AI Chief of Staff that helps manage your daily tasks and a **choose-your-own-adventure style AI project** designed for anyone who wants hands-on experience building Agentic AI.
 
 Underneath the hood, Radlee strictly follows the [**Getting Things Done**(GTD)](https://www.amazon.com/Getting-Things-Done-Stress-Free-Productivity/dp/0143126563) methodology created by personal productivity expert, David Allen. It is pre-programmed to align your daily execution with your "Horizons of Focus" (your long-term purpose, vision, and goals) and conduct proactive Weekly Reviews to keep your life organized.
 
