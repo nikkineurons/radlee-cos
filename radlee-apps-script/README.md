@@ -137,13 +137,19 @@ This sets up Radlee's internal timer so it checks your inbox every minute. It al
 | 🧭 Strategy Primer | Every Monday, 7am | Connects your recent learnings (Dynamic Memory) to your Life Purpose and suggests a macro focus for the week. |
 | 🌱 Weekly Review | Every Sunday, 6pm | A review of your week and GTD alignment suggestions for the week ahead. |
 
-### Step 6: Start Emailing!
+### Step 6: Run Self-Diagnostics
+Before you start emailing Radlee, let's verify that the Google Apps Script environment is perfectly healthy.
+1. **In the Apps Script editor:** Select `runSelfDiagnostics` from the dropdown menu at the top center and click **Run**.
+2. Look at the Execution Log at the bottom of the screen. 
+3. If it outputs `🎉 SUCCESS! All systems go`, you are guaranteed a smooth experience! If it throws any red `❌` errors, read the error message carefully to fix your API key or permissions before proceeding.
+
+### Step 7: Start Emailing!
 1. Open Gmail.
 2. Compose a new email to your Radlee email alias (e.g., `jane+radlee@gmail.com`).
 3. **Always include a subject line** (e.g., "Radlee Request" or "Tasks") so your mail client doesn't complain. Put your actual instructions in the body of the email.
 4. Ask it to do something, and Radlee will reply within a minute or two!
 
-### Step 7: The Multi-Action Test Flight ✈️
+### Step 8: The Multi-Action Test Flight ✈️
 As soon as Radlee is set up, try sending it a single email with multiple instructions to see its batch-processing power in action. 
 
 Send Radlee an email that says exactly this:

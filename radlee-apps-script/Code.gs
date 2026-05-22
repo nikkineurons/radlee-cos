@@ -1579,3 +1579,82 @@ Ideas and future projects to incubate.`
     console.error("❌ Error during initialization: " + e.message);
   }
 }
+
+// ═══════════════════════════════════════════════════════════════════
+// --- 9. NATIVE DIAGNOSTICS ---
+
+function runSelfDiagnostics() {
+  console.log("🚀 Starting Radlee Self-Diagnostics...");
+  let passed = true;
+
+  // 1. Property Validation
+  console.log("⏳ 1. Checking Script Properties...");
+  const props = PropertiesService.getScriptProperties().getProperties();
+  if (!props.GEMINI_API_KEY) { console.error("❌ Missing GEMINI_API_KEY"); passed = false; }
+  if (!props.OWNER_EMAIL) { console.error("❌ Missing OWNER_EMAIL"); passed = false; }
+  if (!props.RADLEE_EMAIL) { console.error("❌ Missing RADLEE_EMAIL"); passed = false; }
+  if (passed) console.log("✅ Properties configured.");
+
+  // 2. Gemini API & JSON Truncation Test
+  console.log("⏳ 2. Testing Gemini API & JSON Structured Output...");
+  try {
+    const testSchema = {
+      "type": "OBJECT",
+      "properties": { "status": { "type": "STRING" } }
+    };
+    const res = callGeminiStructured("Return {'status': 'OK'} as JSON", [{ parts: [{ text: "ping" }] }], props.GEMINI_API_KEY, testSchema);
+    if (res.status === "OK") {
+      console.log("✅ Gemini API is healthy and returning correctly formatted JSON.");
+    } else {
+      console.error("❌ Gemini API returned unexpected JSON: " + JSON.stringify(res));
+      passed = false;
+    }
+  } catch (e) {
+    console.error("❌ Gemini API Test Failed: " + e.message);
+    passed = false;
+  }
+
+  // 3. Calendar Service Check
+  console.log("⏳ 3. Testing Google Calendar Advanced Service...");
+  try {
+    const event = Calendar.Events.insert({
+      summary: "Radlee Diagnostic Test",
+      start: { dateTime: new Date().toISOString() },
+      end: { dateTime: new Date(Date.now() + 1000 * 60 * 15).toISOString() }
+    }, "primary");
+    Calendar.Events.remove("primary", event.id);
+    console.log("✅ Google Calendar Service is enabled and functioning.");
+  } catch (e) {
+    console.error("❌ Google Calendar Service Test Failed: " + e.message + " (Make sure Calendar API v3 is added in Advanced Services)");
+    passed = false;
+  }
+  
+  // 4. Action Mapping Test
+  console.log("⏳ 4. Verifying Action Registry mapping...");
+  try {
+    const SETTINGS = props; // mock settings
+    const missingActions = [];
+    ACTION_REGISTRY.forEach(actionObj => {
+      // Pass empty params; we expect a parameter error or success, NOT "Unknown"
+      const res = handleStructuredRouting(actionObj.name, {}, SETTINGS);
+      if (res && res.includes("Unknown structured action")) {
+         missingActions.push(actionObj.name);
+      }
+    });
+    if (missingActions.length > 0) {
+      console.error("❌ The following actions are in ACTION_REGISTRY but missing from handleStructuredRouting: " + missingActions.join(", "));
+      passed = false;
+    } else {
+      console.log("✅ All registered actions are mapped to the router.");
+    }
+  } catch (e) {
+    console.error("❌ Action Mapping Test Failed: " + e.message);
+    passed = false;
+  }
+
+  if (passed) {
+    console.log("🎉 SUCCESS! All systems go. You can now safely send your Test Flight email!");
+  } else {
+    console.error("⚠️ DIAGNOSTICS FAILED. Please fix the errors above before continuing.");
+  }
+}
