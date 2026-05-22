@@ -1635,6 +1635,7 @@ function runSelfDiagnostics() {
     const SETTINGS = props; // mock settings
     const missingActions = [];
     Object.keys(ACTION_REGISTRY).forEach(actionName => {
+      if (actionName === "NONE") return; // NONE is a special no-op action handled by the engine directly
       // Pass empty params; we expect a parameter error or success, NOT "Unknown"
       const res = handleStructuredRouting(actionName, {}, SETTINGS);
       if (res && typeof res === 'string' && res.includes("Unknown structured action")) {
