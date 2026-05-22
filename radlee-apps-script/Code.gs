@@ -1634,11 +1634,11 @@ function runSelfDiagnostics() {
   try {
     const SETTINGS = props; // mock settings
     const missingActions = [];
-    ACTION_REGISTRY.forEach(actionObj => {
+    Object.keys(ACTION_REGISTRY).forEach(actionName => {
       // Pass empty params; we expect a parameter error or success, NOT "Unknown"
-      const res = handleStructuredRouting(actionObj.name, {}, SETTINGS);
-      if (res && res.includes("Unknown structured action")) {
-         missingActions.push(actionObj.name);
+      const res = handleStructuredRouting(actionName, {}, SETTINGS);
+      if (res && typeof res === 'string' && res.includes("Unknown structured action")) {
+         missingActions.push(actionName);
       }
     });
     if (missingActions.length > 0) {
