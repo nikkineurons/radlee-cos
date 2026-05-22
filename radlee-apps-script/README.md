@@ -98,11 +98,8 @@ We recommend running Radlee in a dedicated Google Workspace account (or creating
 
 ### Step 3: Run the Setup Wizard
 1. Click the ⚙️ **Project Settings** icon (gear icon) on the left sidebar.
-2. Scroll down to **Script Properties** and click **Add script property**. Add the following properties (case-sensitive):
+2. Scroll down to **Script Properties** and click **Add script property**. Add the following property (case-sensitive):
    - `GEMINI_API_KEY`: Your Gemini API key.
-   - `USER_NAME`: Your name.
-   - `OWNER_EMAIL`: Your exact personal email address.
-   - `RADLEE_EMAIL`: The email address you want to use for Radlee (e.g., your.name+radlee@gmail.com).
    > [!TIP]
    > **Need an API key?** It's free and easy to get. Go to [aistudio.google.com/app/apikey](https://aistudio.google.com/app/apikey) and generate one.
 3. Click **Save script properties**.

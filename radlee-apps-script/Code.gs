@@ -1445,22 +1445,20 @@ function initializeAgent() {
   const props = propsService.getProperties();
   const apiKey = props.GEMINI_API_KEY;
   const userName = props.USER_NAME || "User";
-  const ownerEmail = props.OWNER_EMAIL;
-  const radleeEmail = props.RADLEE_EMAIL;
+  
+  // Automatically retrieve the current user's email if not explicitly set
+  const currentEmail = Session.getEffectiveUser().getEmail();
+  const ownerEmail = props.OWNER_EMAIL || currentEmail;
+  const radleeEmail = props.RADLEE_EMAIL || currentEmail;
 
   if (!apiKey) {
     console.error("❌ Setup Failed: Please add GEMINI_API_KEY in Project Settings -> Script Properties");
     return;
   }
-  if (!ownerEmail) {
-    console.error("❌ Setup Failed: Please add OWNER_EMAIL in Project Settings -> Script Properties");
-    return;
-  }
-  if (!radleeEmail) {
-    console.error("❌ Setup Failed: Please add RADLEE_EMAIL in Project Settings -> Script Properties");
-    return;
-  }
   
+  if (!props.OWNER_EMAIL) propsService.setProperty("OWNER_EMAIL", ownerEmail);
+  if (!props.RADLEE_EMAIL) propsService.setProperty("RADLEE_EMAIL", radleeEmail);
+  if (!props.USER_NAME) propsService.setProperty("USER_NAME", userName);
   console.log("Creating Google Drive folders and initialization files. Please wait...");
   
   try {
