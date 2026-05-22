@@ -118,7 +118,7 @@ function processEmailInbox() {
 }
 
 // ─── Isolated Email Helper ─────────────────────────────────────────
-// Sends an email via a draft so we can grab the thread, label it, and archive it, skipping the inbox.
+// Sends an email via a draft so we can grab the thread and label it.
 function sendIsolatedEmail(recipient, subject, body, options = {}) {
   // GmailApp.createDraft does not support the 'name' option, which causes "Invalid argument" errors.
   if (options.name) delete options.name;
@@ -135,10 +135,9 @@ function sendIsolatedEmail(recipient, subject, body, options = {}) {
     
     if (thread) {
       thread.addLabel(label);
-      thread.moveToArchive(); // Skips the primary inbox
     }
   } catch (e) {
-    console.warn("Failed to isolate outbound email: " + e.message);
+    console.warn("Failed to apply label to outbound email: " + e.message);
   }
 }
 
