@@ -106,12 +106,34 @@ function processEmailInbox() {
 
       // Send a separate email instead of replying to break the thread
       const responseSubject = subject ? `Radlee: ${subject}` : "Radlee Response";
-      GmailApp.sendEmail(SETTINGS.OWNER_EMAIL, responseSubject, responseText || "✅ Done.");
+      sendIsolatedEmail(SETTINGS.OWNER_EMAIL, responseSubject, responseText || "✅ Done.");
       
       logAuditActivity("Email_Poller", "Processed_Email", rawText.substring(0, 100), responseText.substring(0, 100), "Success");
     }
   } catch (e) {
     logAuditActivity("Email_Poller", "Polling_Error", "", e.message, "FAIL");
+  }
+}
+
+// ─── Isolated Email Helper ─────────────────────────────────────────
+// Sends an email via a draft so we can grab the thread, label it, and archive it, skipping the inbox.
+function sendIsolatedEmail(recipient, subject, body, options = {}) {
+  const draft = GmailApp.createDraft(recipient, subject, body, options);
+  const msg = draft.send();
+  Utilities.sleep(1500); // Allow Gmail to index the sent message into the owner's mailbox
+  
+  try {
+    const thread = msg.getThread();
+    const labelName = "Radlee";
+    let label = GmailApp.getUserLabelByName(labelName);
+    if (!label) label = GmailApp.createLabel(labelName);
+    
+    if (thread) {
+      thread.addLabel(label);
+      thread.moveToArchive(); // Skips the primary inbox
+    }
+  } catch (e) {
+    console.warn("Failed to isolate outbound email: " + e.message);
   }
 }
 
@@ -1097,7 +1119,7 @@ Structure the briefing exactly as:
 
     const report = callGemini(systemPrompt, [{"role": "user", "parts": [{"text": taskPrompt}]}], SETTINGS.API_KEY, false);
 
-    GmailApp.sendEmail(myEmail, `🌱 Radlee Weekly GTD Alignment Briefing`, report, {
+    sendIsolatedEmail(myEmail, `🌱 Radlee Weekly GTD Alignment Briefing`, report, {
       name: SETTINGS.ASSISTANT_NAME || "Radlee"
     });
 
@@ -1149,7 +1171,7 @@ function runStrategyPrimer() {
       '<p style="color:#94a3b8;font-size:11px;">Sent automatically by Radlee.</p>' +
       '</div>';
 
-    GmailApp.sendEmail(myEmail, "🧭 Radlee: Your Weekly Strategic Primer", report, {
+    sendIsolatedEmail(myEmail, "🧭 Radlee: Your Weekly Strategic Primer", report, {
       name: SETTINGS.ASSISTANT_NAME || "Radlee",
       htmlBody: emailHtml
     });
@@ -1262,7 +1284,7 @@ Structure the email exactly as:
     const brief   = callGemini(systemPrompt, [{"role":"user","parts":[{"text":taskPrompt}]}], SETTINGS.API_KEY, false);
     const dayName = new Date().toLocaleDateString("en-US", { weekday: "long" });
 
-    GmailApp.sendEmail(myEmail, "🌅 Radlee Morning Brief — " + dayName, brief, {
+    sendIsolatedEmail(myEmail, "🌅 Radlee Morning Brief — " + dayName, brief, {
       name: SETTINGS.ASSISTANT_NAME || "Radlee"
     });
 
