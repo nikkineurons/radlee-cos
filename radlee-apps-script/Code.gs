@@ -110,7 +110,7 @@ function processEmailInbox() {
       }
 
       // Reply directly to the thread to maintain conversation history
-      lastMessage.reply(responseText || "✅ Done.");
+      lastMessage.reply(responseText || "✅ Done.", { replyTo: SETTINGS.RADLEE_EMAIL });
       thread.moveToInbox();
       
       logAuditActivity("Email_Poller", "Processed_Email", rawText.substring(0, 100), responseText.substring(0, 100), "Success");
@@ -125,6 +125,9 @@ function processEmailInbox() {
 function sendIsolatedEmail(recipient, subject, body, options = {}) {
   // GmailApp.createDraft does not support the 'name' option, which causes "Invalid argument" errors.
   if (options.name) delete options.name;
+  
+  const SETTINGS = loadSettings();
+  options.replyTo = options.replyTo || SETTINGS.RADLEE_EMAIL;
   
   const draft = GmailApp.createDraft(recipient, subject, body, options);
   const msg = draft.send();
