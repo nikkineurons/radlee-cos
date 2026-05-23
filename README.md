@@ -1,4 +1,4 @@
-# Radlee — The CYOA AI Enablement Project
+# Radlee — The Open-Source Chief of Staff AI Enablement Project
 
 **An autonomous, email-based Artificial Intelligence-powered Chief of Staff that lives in your inbox and helps you execute tasks using the Getting Things Done (GTD) methodology.**
 
