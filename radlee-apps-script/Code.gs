@@ -62,7 +62,7 @@ function processEmailInbox() {
     if (!label) return;
 
     // Search for unread emails sent TO radlee, FROM owner, without the processed label
-    const query = `to:${SETTINGS.RADLEE_EMAIL} is:unread -label:radlee-processed from:${SETTINGS.OWNER_EMAIL}`;
+    const query = `to:"${SETTINGS.RADLEE_EMAIL}" is:unread -label:radlee-processed from:"${SETTINGS.OWNER_EMAIL}"`;
     const threads = GmailApp.search(query);
 
     for (const thread of threads) {
