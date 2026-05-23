@@ -153,7 +153,7 @@ Radlee will process all of these instructions simultaneously and reply with a su
 
 Now that Radlee is set up, you can start using it as an autonomous email assistant. Just email it like you'd email a person! 
 
-Because Radlee is powered by **Google Gemini**, it possesses the full reasoning, brainstorming, analytical, and writing capabilities of a state-of-the-art Large Language Model. You can ask it to help you brainstorm ideas, plan events, write code...the choice is yours!
+Because Radlee is powered by **Google Gemini**, it possesses the full reasoning, analytical, and writing capabilities of a state-of-the-art Large Language Model. You can ask it to help you brainstorm ideas, plan events, write code...the choice is yours!
 
 Radlee is also equipped with an **Action Registry** that allows it to execute specific tasks inside your Google Workspace and read files in its "Vault" to understand your personal context.
 
