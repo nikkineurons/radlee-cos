@@ -73,7 +73,7 @@ This is **expected and completely normal.** Because you are setting this up on y
 
 ---
 
-## 🛠️ Step-by-Step Setup (~20 Minutes)
+## 🛠️ Phase 1: Core Installation (~5 Minutes)
 
 ### Step 1: Prepare Your Google Account
 Radlee should be installed on your **active Google account**. This ensures that when Radlee creates Calendar events or Google Tasks, they appear natively on calendar and task lists that are already in your workflow.
@@ -89,7 +89,7 @@ To keep Radlee's emails from cluttering your inbox, we use an **Email Alias**. I
 6. Go back to the Editor (the `< >` icon), click `appsscript.json` in the file list, and replace its contents with the text from the **`appsscript.json`** file in this repository.
 7. Click the **Save** icon (looks like a floppy disk).
 
-### Step 3: Run the Setup Wizard
+### Step 3: Initialize the Engine
 1. Click the ⚙️ **Project Settings** icon (gear icon) on the left sidebar.
 2. Scroll down to **Script Properties** and click **Add script property**. Add the following property (case-sensitive):
    - `GEMINI_API_KEY`: Your Gemini API key.
@@ -102,7 +102,18 @@ To keep Radlee's emails from cluttering your inbox, we use an **Email Alias**. I
 
 Radlee will automatically create a **`Radlee Vault`** and a **`Radlee Approved Outbox`** folder in your Google Drive. It will also create 7 initial documents for you...
 
-### Step 4: The Radlee Curriculum - Level 1 (Prompt Engineering)
+---
+
+## 🗺️ Phase 2: Choose Your Own Adventure
+
+Now that the core Radlee engine is installed, your adventure begins. You can stop at Level 1 to just use Radlee as a powerful productivity tool, or you can continue to level up your skills by extending its code.
+
+### 🟢 Level 1: The Prompt Engineer (No-Code)
+*(Estimated time: 15 minutes)*
+
+To use Radlee, you first need to program its brain. You will do this without writing any code, using a technique called "Context Injection".
+
+**Task 1: Configure the Vault**
 Open the **`Radlee Vault`** folder in your Google Drive. You'll find 7 documents. These documents are injected directly into Radlee's "Context Window" every time you email it. 
 
 By filling out these Mad Libs exercises, you are practicing **System Prompting** and **Context Injection**. You are literally programming the AI's brain using plain English.
@@ -124,7 +135,7 @@ By filling out these Mad Libs exercises, you are practicing **System Prompting**
 > [!TIP]
 > **Tip:** Start with `01_Strategic_Context` and `05_Areas_of_Focus`. Those two documents are the most important for helping Radlee understand your goals.
 
-### Step 5: Turn On Automatic Emails
+**Task 2: Turn On Automatic Emails**
 Let's turn on Radlee's automated schedules:
 - **In the Apps Script editor:** Select `setupTriggers` from the dropdown menu at the top and click **Run**.
 
@@ -136,20 +147,19 @@ This sets up Radlee's internal timer so it checks your inbox every minute. It al
 | 🧭 Strategy Primer | Every Monday, 7am | Connects your recent learnings (Dynamic Memory) to your Life Purpose and suggests a macro focus for the week. |
 | 🌱 Weekly Review | Every Sunday, 6pm | A review of your week and GTD alignment suggestions for the week ahead. |
 
-### Step 6: Run Self-Diagnostics
+**Task 3: Run Self-Diagnostics**
 Before you start emailing Radlee, let's verify that the Google Apps Script environment is perfectly healthy.
 1. **In the Apps Script editor:** Select `runSelfDiagnostics` from the dropdown menu at the top center and click **Run**.
 2. Look at the Execution Log at the bottom of the screen. 
 3. If it outputs `🎉 SUCCESS! All systems go`, you are guaranteed a smooth experience! If it throws any red `❌` errors, read the error message carefully to fix your API key or permissions before proceeding.
 
-### Step 7: Start Emailing!
+**Task 4: The Multi-Action Test Flight ✈️**
 1. Open Gmail.
 2. Compose a new email to your Radlee email alias (e.g., `jane+radlee@gmail.com`).
 3. **Always include a subject line** (e.g., "Radlee Request" or "Tasks") so your mail client doesn't complain. Put your actual instructions in the body of the email.
 4. When you send an email to Radlee, it will automatically bypass your inbox and be archived to keep your workspace clean.
 5. Radlee will process your request and send its response back directly to your primary inbox within a minute or two!
 
-### Step 8: The Multi-Action Test Flight ✈️
 As soon as Radlee is set up, try sending it a single email with multiple instructions to see its batch-processing power in action. 
 
 Send Radlee an email that says exactly this:
@@ -159,17 +169,17 @@ Radlee will process all of these instructions simultaneously and reply with a su
 
 ---
 
-# 💻 The Radlee Curriculum (Level Up Your AI Skills)
-
+### 🟡 Level 2: The Tinkerer (Low-Code)
 *Adventures for those who want to look at the code and extend what Radlee can do.*
 
-Radlee is built to be broken, extended, and improved. Because it relies on raw API calls rather than a complex framework, you have complete control over how it works. Here are three specific "Adventures" designed to teach you how to level up the project using AI-assisted coding tools.
+- 🧩 **[Add a New Action](docs/adventures/01-add-new-action.md)** — Learn how to give Radlee a new native Google Workspace skill, like reading your Calendar or logging to Google Sheets.
 
-Choose your path based on your Level:
+### 🔴 Level 3: The Engineer (Pro-Code)
 
-- 🧩 **Level 2 (Low-Code Tinkerer): [Add a New Action](docs/adventures/01-add-new-action.md)** — Learn how to give Radlee a new native Google Workspace skill, like reading your Calendar or logging to Google Sheets.
-- 🧠 **Level 3 (Pro-Code Engineer): [Build a Vector Database](docs/adventures/02-vector-database.md)** — Learn how to replace document reading with semantic similarity search for infinite memory.
-- 🔄 **Level 3 (Pro-Code Engineer): [Trigger External Webhooks Safely](docs/adventures/03-external-api-webhooks.md)** — Learn how to build a highly secure, deterministic webhook architecture to trigger workflows in tools like Zapier, Make.com, or Vercel.
+- 🧠 **[Build a Vector Database](docs/adventures/02-vector-database.md)** — Learn how to replace document reading with semantic similarity search for infinite memory.
+- 🔄 **[Trigger External Webhooks Safely](docs/adventures/03-external-api-webhooks.md)** — Learn how to build a highly secure, deterministic webhook architecture to trigger workflows in tools like Zapier, Make.com, or Vercel.
+
+---
 
 ## Repository Structure
 
@@ -177,5 +187,5 @@ Choose your path based on your Level:
 radlee-apps-script/
 ├── Code.gs           — All the logic for Radlee (single-file Apps Script)
 ├── appsscript.json   — Configuration file (tells Google what permissions are needed)
-└── README.md
+└── docs/             — CYOA adventure tutorials
 ```
