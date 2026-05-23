@@ -36,40 +36,7 @@ By using and modifying Radlee, you will learn how to build reliable AI systems:
 
 ---
 
-## What Radlee Does
 
-Once set up, Radlee acts as an autonomous email assistant. Just email it like you'd email a person.
-
-Because Radlee is powered by **Google Gemini**, it possesses the full reasoning, brainstorming, analytical, and writing capabilities of a state-of-the-art Large Language Model. You can ask it to summarize long emails, write Python code, brainstorm marketing ideas, or draft an essay.
-
-But Radlee goes a step further than a standard chat window. It is equipped with a strict **Action Registry** that allows it to execute deterministic tasks inside your Google Workspace, and it can read its "Vault" to understand your personal context.
-
-**Execution & Integration Examples:**
-| Say... | Radlee does... |
-|---|---|
-| *"Schedule lunch with Reginald on Tuesday at 2pm"* | Creates a Google Calendar event |
-| *"Add a task: follow up with contacts from the Sony event"* | Adds to Google Tasks |
-| *"Draft an email to Sarah about the new book club announcement"* | Creates a Gmail draft |
-| *"Review my strategic focus"* | Analyzes your Vault and sends an alignment brief |
-
-**Vault Memory & Alignment Examples:**
-| Say... | Radlee does... |
-|---|---|
-| *"What is my professional focus right now?"* | Reads your strategic objectives doc |
-| *"Which areas of my responsibilities need attention?"*| Reviews your Areas of Focus |
-| *"Add to someday/maybe: explore building an integration"*| Adds to your Someday/Maybe vault document |
-| *"Save to vault: notes from today's partnership talk..."* | Updates your Dynamic Memory/Learnings |
-
-**Open-Ended Gemini Capabilities:**
-| Say... | Radlee does... |
-|---|---|
-| *"Write a Python script to scrape a website."* | Uses Gemini's coding knowledge to write the script |
-| *"Help me brainstorm 10 titles for my new sci-fi novel."* | Uses Gemini's creative writing abilities |
-| *"Recommend some Focus music Spotify playlists."* | Curates music recommendations tailored to your taste |
-| *"Explain quantum computing to me like I'm 5."* | Synthesizes complex information simply |
-| *"Rewrite this paragraph to sound more professional."* | Edits and refines your text |
-
----
 
 # 👤 User Guide & Setup
 
@@ -181,12 +148,48 @@ Radlee will process all of these instructions simultaneously and reply with a su
 
 ---
 
-### 🟡 Level 2: The Tinkerer (Low-Code)
+### 🟡 Level 2: The Co-Pilot (No-Code)
+*(Estimated time: 5 minutes)*
+
+Now that Radlee is set up, you can start using it as an autonomous email assistant. Just email it like you'd email a person! 
+
+Because Radlee is powered by **Google Gemini**, it possesses the full reasoning, brainstorming, analytical, and writing capabilities of a state-of-the-art Large Language Model. You can ask it to summarize long emails, write Python code, brainstorm marketing ideas, or draft an essay.
+
+But Radlee goes a step further than a standard chat window. It is equipped with a strict **Action Registry** that allows it to execute deterministic tasks inside your Google Workspace, and it can read its "Vault" to understand your personal context.
+
+**Execution & Integration Examples:**
+| Say... | Radlee does... |
+|---|---|
+| *"Schedule lunch with Reginald on Tuesday at 2pm"* | Creates a Google Calendar event |
+| *"Add a task: follow up with contacts from the Sony event"* | Adds to Google Tasks |
+| *"Draft an email to Sarah about the new book club announcement"* | Creates a Gmail draft |
+| *"Review my strategic focus"* | Analyzes your Vault and sends an alignment brief |
+
+**Vault Memory & Alignment Examples:**
+| Say... | Radlee does... |
+|---|---|
+| *"What is my professional focus right now?"* | Reads your strategic objectives doc |
+| *"Which areas of my responsibilities need attention?"*| Reviews your Areas of Focus |
+| *"Add to someday/maybe: explore building an integration"*| Adds to your Someday/Maybe vault document |
+| *"Save to vault: notes from today's partnership talk..."* | Updates your Dynamic Memory/Learnings |
+
+**Open-Ended Gemini Capabilities:**
+| Say... | Radlee does... |
+|---|---|
+| *"Write a Python script to scrape a website."* | Uses Gemini's coding knowledge to write the script |
+| *"Help me brainstorm 10 titles for my new sci-fi novel."* | Uses Gemini's creative writing abilities |
+| *"Recommend some Focus music Spotify playlists."* | Curates music recommendations tailored to your taste |
+| *"Explain quantum computing to me like I'm 5."* | Synthesizes complex information simply |
+| *"Rewrite this paragraph to sound more professional."* | Edits and refines your text |
+
+---
+
+### 🟠 Level 3: The Tinkerer (Low-Code)
 *Adventures for those who want to look at the code and extend what Radlee can do.*
 
 - 🧩 **[Add a New Action](docs/adventures/01-add-new-action.md)** — Learn how to give Radlee a new native Google Workspace skill, like reading your Calendar or logging to Google Sheets.
 
-### 🔴 Level 3: The Engineer (Pro-Code)
+### 🔴 Level 4: The Engineer (Pro-Code)
 
 - 🧠 **[Build a Vector Database](docs/adventures/02-vector-database.md)** — Learn how to replace document reading with semantic similarity search for infinite memory.
 - 🔄 **[Trigger External Webhooks Safely](docs/adventures/03-external-api-webhooks.md)** — Learn how to build a highly secure, deterministic webhook architecture to trigger workflows in tools like Zapier, Make.com, or Vercel.
