@@ -163,6 +163,10 @@ Now that Radlee is set up, you can start using it as an autonomous email assista
 
 Because Radlee is powered by **Google Gemini**, it possesses the full reasoning, analytical, and writing capabilities of a state-of-the-art Large Language Model. You can ask it to help you brainstorm ideas, plan events, write code...the choice is yours!
 
+> [!TIP]
+> **Conversational Memory**
+> Radlee maintains a "rolling window" of your conversation, automatically remembering the last 10 back-and-forth turns of your email thread. This allows you to have natural, continuous back-and-forth discussions without needing to restate context! If you want Radlee to remember something permanently, tell it to "save this to your memory."
+
 Radlee is also equipped with an **Action Registry** that allows it to execute specific tasks inside your Google Workspace and read files in its "Vault" to understand your personal context.
 
 **Execution & Integration Examples:**
