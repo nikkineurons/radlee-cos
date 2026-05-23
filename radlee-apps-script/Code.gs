@@ -16,10 +16,13 @@ const CONFIG = {
 
 
 
-// 🎓 LESSON: The Action Registry
-// This object defines every capability the AI has. By separating the definition 
-// of an action from its execution code, we ensure the LLM can only trigger
-// pre-approved functions, preventing rogue executions.
+// 🎓 LESSON: The Action Registry (Tool Calling Definition)
+// This object acts as the AI's "menu of capabilities." In standard LLM setups,
+// you might tell an AI "you can send emails", but here, we programmatically
+// declare the exact actions and the required parameters (like "recipient", "subject").
+// This concept is called "Tool Calling" or "Function Calling". By separating the definition 
+// of an action from its execution code, we ensure the LLM understands its boundaries and
+// can only request pre-approved functions, preventing rogue executions.
 const ACTION_REGISTRY = {
   TASK: { type: "WRITE", desc: "Create a Google Task", params: ["title"] },
   CALENDAR: { type: "WRITE", desc: "Schedule an event", params: ["title", "iso"] },
@@ -168,8 +171,10 @@ function processAgentRequest(userInput, sessionHistory = []) {
     // --- SCHEMAS ---
     // 🎓 LESSON: Structured Outputs (JSON Schemas)
     // We pass these schemas to the Gemini API via the `responseSchema` config.
-    // This physically forces the LLM to reply in a strict JSON format that our 
-    // code can parse safely, eliminating "hallucinated" formatting.
+    // Normally, an LLM responds with plain, unpredictable text (like a chat interface).
+    // By providing a schema, we physically force the LLM to reply in a strict JSON format 
+    // that our code can predictably parse. This eliminates "hallucinated" formatting
+    // and allows us to safely extract the specific "action" and "params" the LLM chose.
     const routerSchema = {
       "type": "OBJECT",
       "properties": {
@@ -359,10 +364,12 @@ function processAgentRequest(userInput, sessionHistory = []) {
  * CONTEXT PLANNER — Handles typed actions from the LLM.
  * Receives typed action + params object from callGeminiStructured.
  */
-// 🎓 LESSON: Deterministic Routing
-// The LLM only outputs a string like "EMAIL". This switch statement maps that
-// string to the actual native Google function. This guarantees the LLM never 
-// writes or runs actual code.
+// 🎓 LESSON: Deterministic Routing (Safe Execution)
+// Even though the AI "decides" to do something, it never actually writes or executes code.
+// The LLM only outputs a JSON string like { "action": "EMAIL", "params": {...} }. 
+// This switch statement is the "Router". It takes that simple string and maps it to a 
+// hardcoded, native Google Apps Script function (like execEmailAction). This guarantees 
+// the execution phase is 100% deterministic, predictable, and safe.
 function handleStructuredRouting(action, params, SETTINGS) {
   const missing = [];
   const requireParam = (field) => { if (!params[field] || !params[field].toString().trim()) missing.push(field); };
@@ -1366,10 +1373,13 @@ function logToDLQ(input, context) {
   console.warn(`[DLQ] Input: ${input} | Context: ${JSON.stringify(context)}`);
 }
 
-// 🎓 LESSON: Idempotency Locks
-// Idempotency ensures an operation produces the same result no matter how many
-// times it runs. If the LLM glitches and outputs the same action twice in a row,
-// this cache lock ensures we don't accidentally double-book a calendar event.
+// 🎓 LESSON: Idempotency Locks (Duplicate Prevention)
+// In distributed systems, "Idempotency" means that performing an operation multiple
+// times yields the same result as performing it once. AI agents are prone to looping
+// or accidentally outputting the same JSON action twice.
+// By generating a unique "hash" of the action (e.g., "Schedule Lunch at 2pm"), we create
+// a temporary lock in the cache. If the LLM glitches and asks to schedule that exact
+// same lunch again 5 seconds later, this lock catches it and prevents a duplicate execution.
 function execIdempotent(actionKey, actionFunc) {
   const cache = CacheService.getScriptCache();
   
