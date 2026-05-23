@@ -36,7 +36,7 @@ const ACTION_REGISTRY = {
   LEARN: { type: "WRITE", desc: "Log a key insight in the long-term memory", params: ["learning"] },
 
   INCUBATE: { type: "WRITE", desc: "Add to Someday/Maybe list", params: ["description"] },
-  READ_DOC: { type: "READ", desc: "Read a document from the vault", params: ["doc_name"] },
+  READ_DOC: { type: "READ", desc: "Read a document from the vault. Supports Google Docs, Google Sheets, and plain text/CSV.", params: ["doc_name"] },
   LIST_FOLDER_FILES: { type: "READ", desc: "List all files in a specific folder", params: ["folder_name"] },
   READ_FILE: { type: "READ", desc: "Read the content of a specific file in a specific folder. Supports Google Docs, Google Sheets, and plain text/CSV.", params: ["folder_name", "file_name"] },
   NONE: { type: "BOTH", desc: "Respond to user directly", params: [] }
@@ -652,9 +652,28 @@ function invalidateSystemPromptCache(vaultId) {
 }
 
 function getVaultContent(fileName, vaultId) {
-  const folder = DriveApp.getFolderById(vaultId);
-  const files = folder.getFilesByName(fileName);
-  return files.hasNext() ? DocumentApp.openById(files.next().getId()).getBody().getText() : `[Missing ${fileName}]`;
+  try {
+    const folder = DriveApp.getFolderById(vaultId);
+    const files = folder.getFilesByName(fileName);
+    if (!files.hasNext()) return `[Missing ${fileName}]`;
+    
+    const file = files.next();
+    const mimeType = file.getMimeType();
+    
+    if (mimeType === MimeType.GOOGLE_DOCS) {
+      return DocumentApp.openById(file.getId()).getBody().getText();
+    } else if (mimeType === MimeType.GOOGLE_SHEETS) {
+      const sheet = SpreadsheetApp.openById(file.getId()).getActiveSheet();
+      const data = sheet.getDataRange().getValues();
+      return data.map(row => row.join(", ")).join("\n");
+    } else if (mimeType === MimeType.PDF || mimeType.includes("image")) {
+      return `[${fileName} is a PDF/Image and cannot be read]`;
+    } else {
+      return file.getBlob().getDataAsString();
+    }
+  } catch (e) {
+    return `[Error reading ${fileName}: ${e.message}]`;
+  }
 }
 
 // --- 7. PHYSICAL ACTUATORS ---
@@ -711,12 +730,30 @@ function appendToIncubate(item, vaultId) {
 }
 
 function execReadDoc(title, vaultId) {
-  const folder = DriveApp.getFolderById(vaultId);
-  const files = folder.getFilesByName(title);
-  if (files.hasNext()) {
-    return DocumentApp.openById(files.next().getId()).getBody().getText();
+  try {
+    const folder = DriveApp.getFolderById(vaultId);
+    const files = folder.getFilesByName(title);
+    if (!files.hasNext()) {
+      return `Error: Document "${title}" not found.`;
+    }
+    
+    const file = files.next();
+    const mimeType = file.getMimeType();
+    
+    if (mimeType === MimeType.GOOGLE_DOCS) {
+      return DocumentApp.openById(file.getId()).getBody().getText();
+    } else if (mimeType === MimeType.GOOGLE_SHEETS) {
+      const sheet = SpreadsheetApp.openById(file.getId()).getActiveSheet();
+      const data = sheet.getDataRange().getValues();
+      return data.map(row => row.join(", ")).join("\n");
+    } else if (mimeType === MimeType.PDF || mimeType.includes("image")) {
+      return `Error: File "${title}" is a PDF or image. Radlee's READ_DOC action currently only supports Docs, Sheets, and plain text/CSV.`;
+    } else {
+      return file.getBlob().getDataAsString();
+    }
+  } catch (e) {
+    return `Error reading document "${title}": ${e.message}`;
   }
-  return `Error: Document "${title}" not found.`;
 }
 
 function execListFolderFiles(folderName, contextFolders) {
