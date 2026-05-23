@@ -442,9 +442,11 @@ function handleStructuredRouting(action, params, SETTINGS) {
       return execIdempotent(`PDF_EMAIL|${params.doc_name}|${params.recipient}`, () => execPdfEmailAction(params.doc_name, params.recipient, params.subject, params.body, SETTINGS.APPROVED_ID));
 
     case "AREAS_CHECKIN":
+      if (SETTINGS._isDiagnostic) return "✅ Mapped";
       return execAreasCheckin(SETTINGS.VAULT_ID);
 
     case "STRATEGY_PRIMER":
+      if (SETTINGS._isDiagnostic) return "✅ Mapped";
       return execStrategyPrimer(SETTINGS);
 
     case "TASK":
@@ -1671,7 +1673,7 @@ function runSelfDiagnostics() {
   // 4. Action Mapping Test
   console.log("⏳ 4. Verifying Action Registry mapping...");
   try {
-    const SETTINGS = props; // mock settings
+    const SETTINGS = Object.assign({}, props, { _isDiagnostic: true }); // mock settings
     const missingActions = [];
     Object.keys(ACTION_REGISTRY).forEach(actionName => {
       if (actionName === "NONE") return; // NONE is a special no-op action handled by the engine directly
