@@ -205,7 +205,7 @@ Radlee is also equipped with an **Action Registry** that allows it to execute sp
 ### 🔴 Level 4: The Engineer (Pro-Code)
 
 - 🧠 **[Build a Vector Database](docs/adventures/02-vector-database.md)** — Learn how to replace full-document reading with semantic similarity search to scale Radlee's long-term memory.
-- 🔄 **[Trigger External Webhooks Safely](docs/adventures/03-external-api-webhooks.md)** — Learn how to build a highly secure, deterministic webhook architecture to trigger workflows in tools like Zapier, Make.com, or Vercel.
+- 🔄 **[Trigger External Webhooks Safely](docs/adventures/03-external-api-webhooks.md)** — Learn how to build a deterministic webhook architecture to trigger workflows in tools like Zapier, Make.com, or Vercel.
 
 ---
 
