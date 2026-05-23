@@ -93,7 +93,7 @@ Radlee will automatically attempt to create the necessary folders and documents 
   - `07_Context_Folders`
 - [ ] Check your Google Drive for another folder named **`Radlee Approved Outbox`**.
 
-If you see all of these, your Chief of Staff has successfully moved in!
+If you see all of these, your Chief of Staff has successfully onboarded!
 
 ---
 
