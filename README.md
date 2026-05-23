@@ -93,7 +93,7 @@ Radlee will automatically attempt to create the necessary folders and documents 
   - `07_Context_Folders`
 - [ ] Check your Google Drive for another folder named **`Radlee Approved Outbox`**.
 
-If you see all of these, your Chief of Staff has successfully onboarded!
+If you see all of these, your Chief of Staff has successfully been onboarded!
 
 ---
 
@@ -108,7 +108,7 @@ If you see all of these, your Chief of Staff has successfully onboarded!
 
 ---
 
-## 🗺️ Phase 2: Choose Your Own Adventure
+## 🗺️ Phase 2: Choose Your Own Adventure (CYOA)
 
 Now that the core Radlee engine is installed, your adventure begins. You can stop at Level 1 to just use Radlee as a powerful productivity tool, or you can continue to level up your skills by extending its code.
 
