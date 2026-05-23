@@ -14,10 +14,10 @@ From there, you can explore **The Radlee Curriculum** to learn how Agentic AI wo
 
 ## ✨ Core Features & Benefits
 
-- 🔒 **Secure, Email-Only Interface:** Radlee only talks to you. It securely checks every incoming email to ensure it came from your approved address. If anyone else tries to email it, Radlee ignores them.
-- 💸 **Ultra Low-Cost:** Radlee is designed to be incredibly cheap to run. By carefully managing how it thinks and reads your documents, it keeps API costs well under $1 a day and typically within free quota limits.
-- 📅 **Takes Real Action:** Radlee doesn't just chat. It can schedule meetings on your Google Calendar, create Google Tasks, draft Gmail replies, and write Google Docs.
-- 🎯 **Understands Your Goals (GTD Alignment):** Radlee reads your "Vault" documents to understand your professional goals and GTD Horizons, ensuring its advice actually helps you succeed.
+- 🔒 **Email Interface:** Radlee only talks to you. It securely checks every incoming email to ensure it came from your approved address. If anyone else tries to email it, Radlee ignores them.
+- 💸 **Low Cost:** Radlee is designed to be incredibly cheap to run. By carefully managing how it thinks and reads your documents, it keeps API costs well under $1 a day and typically within free quota limits.
+- 📅 **Autonomous Actions:** Radlee doesn't just chat. It can schedule meetings on your Google Calendar, create Google Tasks, draft Gmail replies, and write Google Docs.
+- 🎯 **Goal Alignment):** Radlee reads your "Vault" documents to understand your professional goals and GTD Horizons, ensuring its advice actually helps you succeed.
 
 - 🌅 **Proactive Briefings:** Radlee sends *you* emails. You'll get a morning operational brief, a curated event digest on Mondays, and a GTD weekly review on Sundays—all automatically.
 - 🎙️ **Voice Command Support:** Too busy to type? Send Radlee an audio voice memo attachment. It will transcribe your voice, understand what you need, and get it done.
@@ -161,7 +161,7 @@ Radlee will process all of these instructions simultaneously and reply with a su
 
 Now that Radlee is set up, you can start using it as an autonomous email assistant. Just email it like you'd email a person! 
 
-Because Radlee is powered by **Google Gemini**, it possesses the full reasoning, analytical, and writing capabilities of a state-of-the-art Large Language Model. You can ask it to help you brainstorm ideas, plan events, write code...the choice is yours!
+Because Radlee is powered by **Google Gemini**, it possesses the full reasoning, analytical, and writing capabilities of a state-of-the-art Large Language Model. You can ask it to help you brainstorm ideas, plan events, write code...the choice is yours! Radlee will let you know if it needs a code upgrade to fulfill your request.
 
 > [!TIP]
 > **Conversational Memory**
@@ -195,13 +195,13 @@ Radlee is also equipped with an **Action Registry** that allows it to execute sp
 | *"Rewrite this paragraph to sound more professional."* | Edits and refines your text |
 
 > [!IMPORTANT]
-> **🎮 Gamifying Your GTD: The Daily API Rate Limit**
+> **🎮 Radlee's Rate: The Daily API Rate Limit**
 > 
 > If you are using the free tier of the Gemini API, you have a set number of API requests (think of them as "Action Points") you can make per minute and per day. Think of this as the energy meter for your Chief of Staff. 
 > 
 > **The Challenge:** Prompt Radlee efficiently by batching your instructions (e.g. asking it to schedule a meeting, draft an email, and read a document all in *one* email) to maximize your productivity before hitting the limit. 
 > 
-> **Extend Play:** If you want to pay for more energy, you can set up Google Cloud billing to buy credits and access higher capacity.
+> **Extend Play:** If you want to pay for more energy, you can [set up billing](https://aistudio.google.com/) in Google AI Studio to buy credits and access higher capacity.
 
 ---
 
