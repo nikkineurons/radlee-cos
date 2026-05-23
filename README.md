@@ -136,8 +136,16 @@ Before you start emailing Radlee, let's verify that the Google Apps Script envir
 1. Open Gmail.
 2. Compose a new email to your Radlee email alias (e.g., `jane+radlee@gmail.com`).
 3. **Always include a subject line** (e.g., "Radlee Request" or "Tasks") so your mail client doesn't complain. Put your actual instructions in the body of the email.
-4. When you send an email to Radlee, it will automatically bypass your inbox and be archived to keep your workspace clean.
-5. Radlee will process your request and send its response back directly to your primary inbox within a minute or two!
+4. Radlee will process your request and send its response back directly to your primary inbox within a minute or two!
+
+> [!TIP]
+> **Keep Your Inbox Clean Instantly**
+> When you send an email to yourself (your Radlee alias), Gmail natively delivers it to your Inbox immediately. Radlee will eventually archive it when the script runs every 60 seconds. If you want to instantly hide your outbound messages to Radlee, create a native Gmail Filter:
+> 1. Go to **Settings > Filters and Blocked Addresses > Create a new filter**.
+> 2. In the **To** field, type your exact Radlee email (e.g., `jane+radlee@gmail.com`).
+> 3. Click **Create filter**, then check **Skip the Inbox (Archive it)**.
+> 4. Click **Create filter** again.
+
 
 As soon as Radlee is set up, try sending it a single email with multiple instructions to see its batch-processing power in action. 
 
