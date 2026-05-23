@@ -38,7 +38,7 @@ const ACTION_REGISTRY = {
   INCUBATE: { type: "WRITE", desc: "Add to Someday/Maybe list", params: ["description"] },
   READ_DOC: { type: "READ", desc: "Read a document from the vault", params: ["doc_name"] },
   LIST_FOLDER_FILES: { type: "READ", desc: "List all files in a specific folder", params: ["folder_name"] },
-  READ_FILE: { type: "READ", desc: "Read the content of a specific file in a specific folder", params: ["folder_name", "file_name"] },
+  READ_FILE: { type: "READ", desc: "Read the content of a specific file in a specific folder. Supports Google Docs, Google Sheets, and plain text/CSV.", params: ["folder_name", "file_name"] },
   NONE: { type: "BOTH", desc: "Respond to user directly", params: [] }
 };
 
