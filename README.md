@@ -4,7 +4,7 @@
 
 Radlee is both an AI Agent that helps manage your daily tasks and a **choose-your-own-adventure style AI project** designed for anyone who wants hands-on experience building Agentic AI.
 
-Underneath the hood, Radlee is designed to follow the [**Getting Things Done®** (GTD)](https://www.amazon.com/Getting-Things-Done-Stress-Free-Productivity/dp/0143126563) work-life management system created by organizational and personal productivity expert, David Allen. The Agent is pre-programmed to align your daily execution with your "Horizons of Focus" (your long-term purpose, vision, and goals) and conduct proactive Weekly Reviews to keep your life organized.
+Underneath the hood, Radlee is designed to follow the [**Getting Things Done®** (GTD)](https://gettingthingsdone.com/)) work-life management system created by organizational and personal productivity expert, David Allen. The Agent is pre-programmed to align your daily execution with your "Horizons of Focus" (your long-term purpose, vision, and goals) and conduct proactive Weekly Reviews to keep your life organized.
 
 You can set Radlee up in about 20 minutes to get a fully functional, zero-cost, email-based AI assistant. Radlee lives entirely inside **your Gmail inbox**. There are no new apps to open, and no dashboards to learn. Just email it, and things get done.
 
