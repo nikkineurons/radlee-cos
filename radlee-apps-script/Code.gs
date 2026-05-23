@@ -768,7 +768,9 @@ function execListFolderFiles(folderName, contextFolders) {
     return `Error: Folder "${folderName}" is not configured in 07_Context_Folders.`;
   }
   try {
-    const folder = DriveApp.getFolderById(contextFolders[folderName]);
+    const folderId = contextFolders[folderName];
+    // DriveApp throws 'Invalid argument' if the ID is malformed (e.g. a placeholder like "[Paste Folder ID Here]")
+    const folder = DriveApp.getFolderById(folderId);
     const files = folder.getFiles();
     let fileList = [];
     while (files.hasNext()) {
@@ -778,6 +780,9 @@ function execListFolderFiles(folderName, contextFolders) {
     if (fileList.length === 0) return `Folder "${folderName}" is empty.`;
     return `Files in ${folderName}:\n` + fileList.join("\n");
   } catch (e) {
+    if (e.message.includes("Invalid argument") || e.message.includes("No item with the given ID could be found")) {
+       return `Error: The folder ID provided for "${folderName}" in 07_Context_Folders is invalid or inaccessible. Please update the spreadsheet with a valid Google Drive Folder ID.`;
+    }
     return `Error accessing folder "${folderName}": ${e.message}`;
   }
 }
@@ -787,7 +792,8 @@ function execReadFile(folderName, fileName, contextFolders) {
     return `Error: Folder "${folderName}" is not configured in 07_Context_Folders.`;
   }
   try {
-    const folder = DriveApp.getFolderById(contextFolders[folderName]);
+    const folderId = contextFolders[folderName];
+    const folder = DriveApp.getFolderById(folderId);
     const files = folder.getFilesByName(fileName);
     if (!files.hasNext()) {
       return `Error: File "${fileName}" not found in folder "${folderName}".`;
