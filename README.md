@@ -79,7 +79,14 @@ To keep Radlee's emails from cluttering your inbox, we use an **Email Alias**. I
 5. Click through the Google authorization prompts. *(This is where you will see the "unsafe" warning mentioned above.)*
 6. At the bottom of the screen, you will see an "Execution Log". Wait until it says "✅ Radlee Initialized Successfully!".
 
-Radlee will automatically create a **`Radlee Vault`** and a **`Radlee Approved Outbox`** folder in your Google Drive. It will also create 7 initial documents for you...
+### Step 4: Verify Installation
+Radlee will automatically attempt to create the necessary folders and documents in your Google Drive. Let's make sure it worked!
+
+- [ ] Check your Google Drive for a folder named **`Radlee Vault`**.
+- [ ] Open the **`Radlee Vault`**. You should see exactly 7 initial configuration documents inside.
+- [ ] Check your Google Drive for another folder named **`Radlee Approved Outbox`**.
+
+If you see all of these, your Chief of Staff has successfully moved in!
 
 ---
 
