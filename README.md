@@ -194,6 +194,15 @@ Radlee is also equipped with an **Action Registry** that allows it to execute sp
 | *"Explain quantum computing to me like I'm 5."* | Synthesizes complex information simply |
 | *"Rewrite this paragraph to sound more professional."* | Edits and refines your text |
 
+> [!IMPORTANT]
+> **🎮 Gamifying Your GTD: The Daily API Rate Limit**
+> 
+> If you are using the free tier of the Gemini API, you have a set number of "Action Points" (API requests) you can make per minute and per day. Think of this as a stamina bar for your Chief of Staff! 
+> 
+> **The Challenge:** Prompt Radlee efficiently by batching your instructions (e.g. asking it to schedule a meeting, draft an email, and read a document all in *one* email) to maximize your productivity before hitting the limit. 
+> 
+> **Extend Play:** If you want to unlock unlimited stamina, you can add a pay-as-you-go billing account to your project in Google AI Studio!
+
 ---
 
 ### 🟠 Level 3: The Tinkerer (Low-Code)
