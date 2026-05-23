@@ -302,7 +302,11 @@ function processAgentRequest(userInput, sessionHistory = []) {
     Current Date: ${currentDate}
     Current Time: ${currentTime}
     Respond in structured JSON. Reason in 'thought', provide a 'confidence_score' (0-100), an array of WRITE 'actions', and write the user reply in 'final_answer'. If no actions are needed, use NONE.
-    CRITICAL RULE: If a WRITE action requires parameters that the user has not provided (e.g. missing time for an event, missing title for a task), DO NOT execute the action. Instead, use the 'NONE' action and ask the user to provide the missing details in your 'final_answer'.
+    
+    CRITICAL RULES:
+    1. If a WRITE action requires parameters that the user has not provided, DO NOT execute the action. Use the 'NONE' action and ask the user to provide the missing details in your 'final_answer'.
+    2. You operate in a single-turn email environment. You CANNOT stall, run background tasks, or tell the user to "wait". You must provide the final answer immediately.
+    3. If the Context facts show an error (e.g. a document was not found), tell the user exactly what the error is and ask them to verify the file's location (e.g. is it in the Vault or a Context folder?). DO NOT pretend you are still processing.
     ${adaptiveFeedbackInstruction}
     
     [ACTION REFERENCE]:
