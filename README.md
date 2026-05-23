@@ -83,7 +83,14 @@ To keep Radlee's emails from cluttering your inbox, we use an **Email Alias**. I
 Radlee will automatically attempt to create the necessary folders and documents in your Google Drive. Let's make sure it worked!
 
 - [ ] Check your Google Drive for a folder named **`Radlee Vault`**.
-- [ ] Open the **`Radlee Vault`**. You should see exactly 7 initial configuration documents inside.
+- [ ] Open the **`Radlee Vault`**. You should see exactly 7 initial configuration documents inside:
+  - `00_System_Prompt`
+  - `01_Strategic_Context`
+  - `02_Operating_Principles`
+  - `03_Dynamic_Memory`
+  - `05_Areas_of_Focus`
+  - `06_Someday_Maybe`
+  - `07_Context_Folders`
 - [ ] Check your Google Drive for another folder named **`Radlee Approved Outbox`**.
 
 If you see all of these, your Chief of Staff has successfully moved in!
