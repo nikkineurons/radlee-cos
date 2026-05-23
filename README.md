@@ -135,7 +135,7 @@ Before you start emailing Radlee, let's verify that the Google Apps Script envir
 **Task 4: The Multi-Action Test Flight ✈️**
 1. Open Gmail.
 2. Compose a new email to your Radlee email alias (e.g., `jane+radlee@gmail.com`).
-3. **Always include a subject line** (e.g., "Radlee Request" or "Tasks") so your mail client doesn't complain. Put your actual instructions in the body of the email.
+3. **Always include a subject line** (e.g., "Radlee Request" or "Tasks"). Put your actual instructions in the body of the email.
 4. Radlee will process your request and send its response back directly to your primary inbox within a minute or two!
 
 > [!TIP]
