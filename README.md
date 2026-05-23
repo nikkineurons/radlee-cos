@@ -83,6 +83,17 @@ Radlee will automatically create a **`Radlee Vault`** and a **`Radlee Approved O
 
 ---
 
+> [!IMPORTANT]
+> **🎮 Radlee's Rate: The Daily API Rate Limit**
+> 
+> If you are using the free tier of the Gemini API, you have a set number of API requests you can make per minute and per day. Think of this as the energy meter for your Chief of Staff. 
+> 
+> **The Challenge:** Prompt Radlee efficiently by batching your instructions (e.g. asking it to schedule a meeting, draft an email, and read a document all in *one* email) to maximize your productivity before hitting the limit. 
+> 
+> **Extend Play:** If you want to pay for more energy, you can [set up billing](https://aistudio.google.com/) in Google AI Studio to buy credits and access higher capacity.
+
+---
+
 ## 🗺️ Phase 2: Choose Your Own Adventure
 
 Now that the core Radlee engine is installed, your adventure begins. You can stop at Level 1 to just use Radlee as a powerful productivity tool, or you can continue to level up your skills by extending its code.
@@ -193,15 +204,6 @@ Radlee is also equipped with an **Action Registry** that allows it to execute sp
 | *"Recommend some Focus music Spotify playlists."* | Curates music recommendations tailored to your taste |
 | *"Explain quantum computing to me like I'm 5."* | Synthesizes complex information simply |
 | *"Rewrite this paragraph to sound more professional."* | Edits and refines your text |
-
-> [!IMPORTANT]
-> **🎮 Radlee's Rate: The Daily API Rate Limit**
-> 
-> If you are using the free tier of the Gemini API, you have a set number of API requests you can make per minute and per day. Think of this as the energy meter for your Chief of Staff. 
-> 
-> **The Challenge:** Prompt Radlee efficiently by batching your instructions (e.g. asking it to schedule a meeting, draft an email, and read a document all in *one* email) to maximize your productivity before hitting the limit. 
-> 
-> **Extend Play:** If you want to pay for more energy, you can [set up billing](https://aistudio.google.com/) in Google AI Studio to buy credits and access higher capacity.
 
 ---
 
