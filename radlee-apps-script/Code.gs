@@ -109,9 +109,9 @@ function processEmailInbox() {
         logAuditActivity("Email_Poller", "Error", rawText.substring(0, 100), err.message, "FAIL");
       }
 
-      // Send a separate email instead of replying to break the thread
-      const responseSubject = subject ? `Radlee: ${subject}` : "Radlee Response";
-      sendIsolatedEmail(SETTINGS.OWNER_EMAIL, responseSubject, responseText || "✅ Done.");
+      // Reply directly to the thread to maintain conversation history
+      lastMessage.reply(responseText || "✅ Done.");
+      thread.moveToInbox();
       
       logAuditActivity("Email_Poller", "Processed_Email", rawText.substring(0, 100), responseText.substring(0, 100), "Success");
     }
