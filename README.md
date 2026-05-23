@@ -242,3 +242,14 @@ radlee-apps-script/
 ├── appsscript.json   — Configuration file (tells Google what permissions are needed)
 └── docs/             — CYOA adventure tutorials
 ```
+
+---
+
+## Legal Disclaimer & Trademarks
+Radlee is an independent, open-source project and is **not** affiliated with, endorsed by, or sponsored by any of the companies or trademark holders mentioned in this repository. 
+
+*   **Getting Things Done®** and **GTD®** are registered trademarks of the David Allen Company. 
+*   **Choose Your Own Adventure®** is a registered trademark of Chooseco LLC.
+*   **Mad Libs®** is a registered trademark of Penguin Random House LLC.
+
+Any use of these terms in this project is for descriptive and educational purposes only (nominative fair use).
