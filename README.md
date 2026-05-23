@@ -187,6 +187,7 @@ Radlee is also equipped with an **Action Registry** that allows it to execute sp
 ### 🟠 Level 3: The Tinkerer (Low-Code)
 *Adventures for those who want to look at the code and extend what Radlee can do.*
 
+- 🔍 **Read the Codebase Lessons** — Open `Code.gs` and search for `🎓 LESSON`. The codebase is heavily commented with inline tutorials explaining how the Action Registry, Deterministic Routing, and Idempotency Locks actually work under the hood.
 - 🧩 **[Add a New Action](docs/adventures/01-add-new-action.md)** — Learn how to give Radlee a new native Google Workspace skill, like reading your Calendar or logging to Google Sheets.
 
 ### 🔴 Level 4: The Engineer (Pro-Code)
