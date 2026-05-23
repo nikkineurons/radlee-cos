@@ -65,6 +65,7 @@ But Radlee goes a step further than a standard chat window. It is equipped with 
 |---|---|
 | *"Write a Python script to scrape a website."* | Uses Gemini's coding knowledge to write the script |
 | *"Help me brainstorm 10 titles for my new sci-fi novel."* | Uses Gemini's creative writing abilities |
+| *"Recommend some Focus music Spotify playlists."* | Curates music recommendations tailored to your taste |
 | *"Explain quantum computing to me like I'm 5."* | Synthesizes complex information simply |
 | *"Rewrite this paragraph to sound more professional."* | Edits and refines your text |
 
