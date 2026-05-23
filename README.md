@@ -165,7 +165,7 @@ Because Radlee is powered by **Google Gemini**, it possesses the full reasoning,
 
 > [!TIP]
 > **Conversational Memory**
-> Radlee maintains a "rolling window" of your conversation, automatically remembering the last 10 back-and-forth turns of your email thread. This allows you to have natural, continuous back-and-forth discussions without needing to restate context! If you want Radlee to remember something permanently, tell it to "save this to your memory."
+> Radlee maintains a "rolling window" of your conversation, automatically remembering the last 10 back-and-forth turns of your email thread. This capability is built using **Google Apps Script's native `PropertiesService`**, which acts as a hidden key-value database attached to your script. This allows you to have natural, continuous back-and-forth discussions without needing to restate context! If you want Radlee to remember something permanently, tell it to "save this to your memory."
 
 Radlee is also equipped with an **Action Registry** that allows it to execute specific tasks inside your Google Workspace and read files in its "Vault" to understand your personal context.
 
