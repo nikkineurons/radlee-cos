@@ -6,7 +6,7 @@ Radlee is both an AI Agent that helps manage your daily tasks and a **choose-you
 
 Underneath the hood, Radlee is designed to follow the [**Getting Things Done®** (GTD)](https://www.amazon.com/Getting-Things-Done-Stress-Free-Productivity/dp/0143126563) work-life management system created by organizational and personal productivity expert, David Allen. The Agent is pre-programmed to align your daily execution with your "Horizons of Focus" (your long-term purpose, vision, and goals) and conduct proactive Weekly Reviews to keep your life organized.
 
-You can set Radlee up in about 20 minutes to get a fully functional, zero-cost, email-based AI assistant. Radlee lives entirely inside **your Email inbox**. There are no new apps to open, and no dashboards to learn. Just email it, and things get done.
+You can set Radlee up in about 20 minutes to get a fully functional, zero-cost, email-based AI assistant. Radlee lives entirely inside **your Gmail inbox**. There are no new apps to open, and no dashboards to learn. Just email it, and things get done.
 
 From there, you can explore **The Radlee Curriculum** to learn the inner workings of Agentic AI . Your mission, if you choose to accept it, is to progress from No-Code Prompt Engineering up to Pro-Code integrations 🤖
 
@@ -15,7 +15,7 @@ From there, you can explore **The Radlee Curriculum** to learn the inner working
 ## ✨ Core Features & Benefits
 
 - 🔒 **Email Interface:** Radlee only talks to you. It securely checks every incoming email to ensure it came from your approved address. If anyone else tries to email it, Radlee ignores them.
-- 💸 **Low Cost:** The way Radlee thinks and reads your documents has been carefully managed to support you in getting things done before you reach the daily Gemini API quota limit for free Google CLoud accounts. You can extend your daily access by purchasing API credits (more info below).
+- 💸 **Low Cost:** The way Radlee thinks and reads your documents has been carefully managed to support you in getting things done before you reach the daily Gemini API quota limit for free Google Cloud accounts. You can extend your daily access by purchasing API credits (more info below).
 - 📅 **Autonomous Actions:** Radlee can schedule meetings on your Google Calendar, create Google Tasks, draft Gmail replies, and write Google Docs.
 - 🎯 **Goal Alignment):** Radlee reads your "Radlee Vault" documents to understand your professional goals and GTD Horizons, ensuring its advice actually helps you succeed.
 - 🌅 **Proactive Briefings:** Radlee sends you emails. You'll get a morning operational brief, a curated event digest on Mondays, and a GTD weekly review on Sundays—all automatically.
