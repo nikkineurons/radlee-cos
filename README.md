@@ -4,7 +4,7 @@
 
 Radlee is both an AI Chief of Staff that helps manage your daily tasks and a **choose-your-own-adventure style AI project** designed for anyone who wants hands-on experience building Agentic AI.
 
-Underneath the hood, Radlee strictly follows the [**Getting Things Done**(GTD)](https://www.amazon.com/Getting-Things-Done-Stress-Free-Productivity/dp/0143126563) methodology created by personal productivity expert, David Allen. It is pre-programmed to align your daily execution with your "Horizons of Focus" (your long-term purpose, vision, and goals) and conduct proactive Weekly Reviews to keep your life organized.
+Underneath the hood, Radlee follows the [**Getting Things Done**(GTD)](https://www.amazon.com/Getting-Things-Done-Stress-Free-Productivity/dp/0143126563) methodology created by personal productivity expert, David Allen. It is pre-programmed to align your daily execution with your "Horizons of Focus" (your long-term purpose, vision, and goals) and conduct proactive Weekly Reviews to keep your life organized.
 
 You can set Radlee up in about 20 minutes to get a fully functional, zero-cost, email-based AI assistant. Radlee lives entirely inside **your Email inbox**—where you already work. There are no new apps to open, and no dashboards to learn. Just email it, and things get done.
 
@@ -155,7 +155,7 @@ Now that Radlee is set up, you can start using it as an autonomous email assista
 
 Because Radlee is powered by **Google Gemini**, it possesses the full reasoning, brainstorming, analytical, and writing capabilities of a state-of-the-art Large Language Model. You can ask it to summarize long emails, write Python code, brainstorm marketing ideas, or draft an essay.
 
-But Radlee goes a step further than a standard chat window. It is equipped with a strict **Action Registry** that allows it to execute deterministic tasks inside your Google Workspace, and it can read its "Vault" to understand your personal context.
+Radlee is also equipped with an **Action Registry** that allows it to execute specific tasks inside your Google Workspace and read files in its "Vault" to understand your personal context.
 
 **Execution & Integration Examples:**
 | Say... | Radlee does... |
