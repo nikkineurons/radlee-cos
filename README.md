@@ -1,38 +1,38 @@
 # Radlee — The CYOA AI Enablement Project
 
-**An autonomous, email-based AI Chief of Staff that lives in your inbox and executes tasks using the Getting Things Done (GTD) methodology.**
+**An autonomous, email-based Artificial Intelligence-powered Chief of Staff that lives in your inbox and helps you execute tasks using the Getting Things Done (GTD) methodology.**
 
-Radlee is both an AI Chief of Staff that helps manage your daily tasks and a **choose-your-own-adventure style AI project** designed for anyone who wants hands-on experience building Agentic AI.
+Radlee is both an AI Agent that helps manage your daily tasks and a **choose-your-own-adventure style AI project** designed for anyone who wants hands-on experience building Agentic AI.
 
-Underneath the hood, Radlee follows the [**Getting Things Done** (GTD)](https://www.amazon.com/Getting-Things-Done-Stress-Free-Productivity/dp/0143126563) methodology created by personal productivity expert, David Allen. It is pre-programmed to align your daily execution with your "Horizons of Focus" (your long-term purpose, vision, and goals) and conduct proactive Weekly Reviews to keep your life organized.
+Underneath the hood, Radlee is designed to follow the [**Getting Things Done®** (GTD)](https://www.amazon.com/Getting-Things-Done-Stress-Free-Productivity/dp/0143126563) work-life management system created by organizational and personal productivity expert, David Allen. The Agent is pre-programmed to align your daily execution with your "Horizons of Focus" (your long-term purpose, vision, and goals) and conduct proactive Weekly Reviews to keep your life organized.
 
-You can set Radlee up in about 20 minutes to get a fully functional, zero-cost, email-based AI assistant. Radlee lives entirely inside **your Email inbox**—where you already work. There are no new apps to open, and no dashboards to learn. Just email it, and things get done.
+You can set Radlee up in about 20 minutes to get a fully functional, zero-cost, email-based AI assistant. Radlee lives entirely inside **your Email inbox**. There are no new apps to open, and no dashboards to learn. Just email it, and things get done.
 
-From there, you can explore **The Radlee Curriculum** to learn how Agentic AI works under the hood. You'll progress from No-Code Prompt Engineering up to Pro-Code integrations 🤖
+From there, you can explore **The Radlee Curriculum** to learn the inner workings of Agentic AI . Your mission, if you choose to accept it, is to progress from No-Code Prompt Engineering up to Pro-Code integrations 🤖
 
 ---
 
 ## ✨ Core Features & Benefits
 
 - 🔒 **Email Interface:** Radlee only talks to you. It securely checks every incoming email to ensure it came from your approved address. If anyone else tries to email it, Radlee ignores them.
-- 💸 **Low Cost:** Radlee is designed to be incredibly cheap to run. By carefully managing how it thinks and reads your documents, it keeps API costs well under $1 a day and typically within free quota limits.
-- 📅 **Autonomous Actions:** Radlee doesn't just chat. It can schedule meetings on your Google Calendar, create Google Tasks, draft Gmail replies, and write Google Docs.
-- 🎯 **Goal Alignment):** Radlee reads your "Vault" documents to understand your professional goals and GTD Horizons, ensuring its advice actually helps you succeed.
-
-- 🌅 **Proactive Briefings:** Radlee sends *you* emails. You'll get a morning operational brief, a curated event digest on Mondays, and a GTD weekly review on Sundays—all automatically.
+- 💸 **Low Cost:** The way Radlee thinks and reads your documents has been carefully managed to support you in getting things done before you reach the daily Gemini API quota limit for free Google CLoud accounts. You can extend your daily access by purchasing API credits (more info below).
+- 📅 **Autonomous Actions:** Radlee can schedule meetings on your Google Calendar, create Google Tasks, draft Gmail replies, and write Google Docs.
+- 🎯 **Goal Alignment):** Radlee reads your "Radlee Vault" documents to understand your professional goals and GTD Horizons, ensuring its advice actually helps you succeed.
+- 🌅 **Proactive Briefings:** Radlee sends you emails. You'll get a morning operational brief, a curated event digest on Mondays, and a GTD weekly review on Sundays—all automatically.
 - 🎙️ **Voice Command Support:** Too busy to type? Send Radlee an audio voice memo attachment. It will transcribe your voice, understand what you need, and get it done.
 
 ---
 
 ## 🎓 Core Concepts You Will Learn
 
-By using and modifying Radlee, you will learn how to build reliable AI systems:
+By leveling up your Radlee adventure, you will learn how to build reliable AI systems:
 
-- 🧠 **ReAct (Reason and Act) Pipeline:** Learn how to build a strict two-step pipeline. Radlee first determines what context it needs and reads it, and only then does it reason and act. You'll learn how this eliminates hallucinations and reduces the high costs associated with open-ended AI reasoning loops.
-- 🚦 **Rule-Based Guardrails:** Discover how to blend AI autonomy with deterministic safety. Radlee scores its own confidence; if it drops below 85% on a high-stakes action (like sending an email), a hardcoded safety rule safely downgrades the action to a draft task for human review.
+- 📝 **Prompt Engineering & Context Injection**: The Vault uses a fun "Mad Libs" format to help you practice adjusting specific words in your prompts and agent instructions to affect the AI's behavior. By filling in simple templates, you'll learn how to provide Radlee with clear rules, background information, relevant data, and a unique personality.
+- 🧠 **ReAct (Reason and Act) Framework:** Radlee first determines what context it needs and reads it, and only then does it reason and act. You'll learn how this minimizes hallucinations and reduces the high costs associated with open-ended AI reasoning loops.
+- 🚦 **Rule-Based Guardrails:** Discover how to blend AI autonomy with deterministic safety. Radlee scores its own confidence; if it drops below 85% on a high-stakes action (like selecting a meeting time), a hardcoded safety rule safely downgrades the action to a draft task for human review.
 - 🔁 **RAG (Retrieval-Augmented Generation) & Long-Term Memory:** Learn how AI can "remember" things. When you correct Radlee, it programmatically writes your preference to a Google Doc, and retrieves that doc on the next run, creating a continuous learning loop.
 - 🛡️ **Idempotency (Duplicate-Proof Execution):** Ever worry an AI might glitch and send the same email 100 times? You will learn how to build "Idempotency locks" to guarantee an LLM can never double-book a meeting or create duplicate tasks, even if it loops.
-- 🚦 **Concurrency (Safe Memory Writing):** Learn how to manage Race Conditions. If you email Radlee three thoughts at the exact same time, it uses a "LockService" to politely queue them up and write them to your memory documents one by one without scrambling data.
+- 🚦 **Concurrency (Safe Memory Writing):** Learn how to manage "Race Conditions". If you email Radlee three thoughts at the exact same time, it uses a "LockService" to politely queue them up and write them to your memory documents one by one without scrambling data.
 
 ---
 
