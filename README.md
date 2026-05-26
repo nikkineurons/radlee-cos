@@ -30,6 +30,8 @@ You can set Radlee up in about 20 minutes to get a fully functional, zero-cost, 
 - 🎯 **Goal Alignment:** Radlee parses your custom "Radlee Vault" documents to align every action with your high-level priorities and values.
 - 🌅 **Automated Briefings:** Receives morning operational digests (daily), strategic primers (Mondays), and structured GTD Weekly Reviews (Sundays) automatically.
 - 🎙️ **Voice Commands:** Send an audio file attachment (voice note). Radlee transcribes your speech, understands your request, and runs the appropriate workspace action.
+- ♿ **Highly Accessible:** Operates purely via email text and audio attachments. It integrates natively with your existing assistive technologies (like screen readers or voice dictation) without any new layouts or dashboards to navigate.
+- 🌍 **Global Language Support:** Powered by Gemini, Radlee understands and communicates in dozens of languages (Spanish, Japanese, French, Portuguese, etc.). Simply write your prompts, Vault files, and emails in your preferred language!
 
 ---
 
@@ -43,6 +45,19 @@ By leveling up your Radlee adventure, you will build and understand real-world A
 - 🔁 **Long-Term Memory & RAG:** When you tell Radlee a preference, it programmatically writes it to a Google Doc and reads it on future runs, building a continuous learning loop.
 - 🛡️ **Idempotency Locks:** Guarantee that an LLM can never schedule double-bookings or duplicate tasks, even if its run-loop glitches or retries.
 - 🚦 **Concurrency Management:** Learn how to handle "Race Conditions". If you email Radlee multiple times simultaneously, a Google LockService queues them up to write to your memory documents safely without scrambling data.
+
+> [!TIP]
+> ### 🎓 Radlee Jargon-Buster: Bridging to the Official Terms
+> <details>
+> <summary><b>Confused by terms like "RAG" or "Idempotency"? Click here for friendly real-world analogies...</b></summary>
+> 
+> As you go through this curriculum, you will learn the exact terms and techniques used by professional AI engineers. Here is how to think about them:
+> 
+> * **RAG (Retrieval-Augmented Generation):** *Think of it as an "Open-Book Exam".* Instead of forcing the AI to memorize everything, we let it open a reference binder (the Vault) to read your goals before it answers.
+> * **ReAct (Reason and Act):** *Think of it as "Look Before You Leap".* Rather than immediately blurting out an answer, the AI follows a strict two-step loop: first it explains its reasoning, then it executes the action.
+> * **Idempotency:** *Think of it as a "Duplicate-Proof Mailbox".* Even if a mail carrier accidentally drops the same envelope in your mailbox five times, you only receive one copy. This guarantees the AI never repeats a high-stakes action (like scheduling a calendar meeting) twice.
+> * **Concurrency & Race Conditions:** *Think of it as "Taking a Number at the Deli".* If three emails arrive at the exact same millisecond, the "LockService" makes them stand in a single-file line so they don't scribble over your memory documents simultaneously.
+> </details>
 
 ---
 
@@ -59,9 +74,13 @@ You will talk to Radlee using a Gmail **Email Alias** to keep your inbox clean. 
 1. Go to [script.google.com](https://script.google.com) and click **New Project**.
 2. Delete any default code in the editor.
 3. Copy the full text from the [**`Code.gs`**](radlee-apps-script/Code.gs) file in this repository and paste it into your editor.
+   > [!TIP]
+   > 📋 **Easy Copy Link:** Open and copy the raw code directly from your browser: [**Raw Code.gs Source**](https://raw.githubusercontent.com/nikkineurons/radlee-cos/main/radlee-apps-script/Code.gs)
 4. Click the ⚙️ **Project Settings** (gear icon) on the left sidebar.
 5. Check the box **"Show 'appsscript.json' manifest file in editor"**.
 6. Return to the Editor (`< >` icon), click on `appsscript.json` in the file list, and replace its contents with the text from [**`appsscript.json`**](radlee-apps-script/appsscript.json) in this repository.
+   > [!TIP]
+   > 📋 **Easy Copy Link:** Open and copy the configuration text directly from your browser: [**Raw appsscript.json Source**](https://raw.githubusercontent.com/nikkineurons/radlee-cos/main/radlee-apps-script/appsscript.json)
 7. Click the **Save** (floppy disk) icon.
 
 ### Step 3: Initialize the Engine
