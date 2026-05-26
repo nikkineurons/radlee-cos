@@ -1,244 +1,196 @@
 # Radlee — The Open-Source Chief of Staff AI Enablement Project
 
-**An autonomous, email-based Artificial Intelligence-powered Chief of Staff that lives in your inbox and helps you execute tasks using the Getting Things Done (GTD) methodology.**
+**An autonomous, email-based Chief of Staff powered by state-of-the-art AI. Radlee lives in your inbox and helps you execute tasks using the Getting Things Done (GTD) methodology.**
 
-Radlee is both an AI Agent that helps manage your daily tasks and a **choose-your-own-adventure style AI project** designed for anyone who wants hands-on experience building Agentic AI.
+Radlee is both an active AI Agent that helps manage your daily tasks and a **choose-your-own-adventure style educational curriculum** designed to give you hands-on experience building Agentic AI. 
 
-Underneath the hood, Radlee is designed to follow the [**Getting Things Done®** (GTD)](https://gettingthingsdone.com/)) work-life management system created by organizational and personal productivity expert, David Allen. The Agent is pre-programmed to align your daily execution with your "Horizons of Focus" (your long-term purpose, vision, and goals) and conduct proactive Weekly Reviews to keep your life organized.
+Under the hood, Radlee follows David Allen's [**Getting Things Done®** (GTD)](https://gettingthingsdone.com/) system. It aligns your daily execution with your "Horizons of Focus" (your long-term purpose, vision, and goals) and conducts proactive Weekly Reviews.
 
-You can set Radlee up in about 20 minutes to get a fully functional, zero-cost, email-based AI assistant. Radlee lives entirely inside **your Gmail inbox**. There are no new apps to open, and no dashboards to learn. Just email it, and things get done.
+You can set Radlee up in about 20 minutes to get a fully functional, zero-cost, email-based AI assistant. No new apps to download, and no dashboards to learn. Just email it, and things get done.
 
-From there, you can explore **The Radlee Curriculum** to learn the inner workings of Agentic AI . Your mission, if you choose to accept it, is to progress from No-Code Prompt Engineering up to Pro-Code integrations 🤖
+---
+
+## 🗺️ Your Onboarding Roadmap
+
+```
+┌──────────────────────────┐     ┌──────────────────────────┐     ┌──────────────────────────┐
+│    1. CORE ONBOARDING    │ ──> │    2. CONFIGURE VAULT    │ ──> │    3. FIRST TEST FLIGHT  │
+│  Install Apps Script &   │     │  Fill out "Mad Libs" in  │     │   Send a multi-action    │
+│   Gemini Key (~5 min)    │     │   your Google Drive (10m)│     │     email (~5 min)       │
+└──────────────────────────┘     └──────────────────────────┘     └──────────────────────────┘
+```
 
 ---
 
 ## ✨ Core Features & Benefits
 
-- 🔒 **Email Interface:** Radlee only talks to you. It securely checks every incoming email to ensure it came from your approved address. If anyone else tries to email it, Radlee ignores them.
-- 💸 **Low Cost:** The way Radlee thinks and reads your documents has been carefully managed to support you in getting things done before you reach the daily Gemini API quota limit for free Google Cloud accounts. You can extend your daily access by purchasing API credits (more info below).
-- 📅 **Autonomous Actions:** Radlee can schedule meetings on your Google Calendar, create Google Tasks, draft Gmail replies, and write Google Docs.
-- 🎯 **Goal Alignment):** Radlee reads your "Radlee Vault" documents to understand your professional goals and GTD Horizons, ensuring its advice actually helps you succeed.
-- 🌅 **Proactive Briefings:** Radlee sends you emails. You'll get a morning operational brief, a curated event digest on Mondays, and a GTD weekly review on Sundays—all automatically.
-- 🎙️ **Voice Command Support:** Too busy to type? Send Radlee an audio voice memo attachment. It will transcribe your voice, understand what you need, and get it done.
+- 🔒 **Secure Email Interface:** Radlee only responds to your approved email address, completely ignoring unauthorized senders.
+- 💸 **100% Free / Low Cost:** Optimized to work within the daily free tier limit of the Gemini API. You can expand capacity by adding billing details if you desire.
+- 📅 **Workspace Actions:** Radlee schedules Google Calendar events, creates Google Tasks, drafts Gmail replies, and creates Google Docs natively.
+- 🎯 **Goal Alignment:** Radlee parses your custom "Radlee Vault" documents to align every action with your high-level priorities and values.
+- 🌅 **Automated Briefings:** Receives morning operational digests (daily), strategic primers (Mondays), and structured GTD Weekly Reviews (Sundays) automatically.
+- 🎙️ **Voice Commands:** Send an audio file attachment (voice note). Radlee transcribes your speech, understands your request, and runs the appropriate workspace action.
 
 ---
 
 ## 🎓 Core Concepts You Will Learn
 
-By leveling up your Radlee adventure, you will learn how to build reliable AI systems:
+By leveling up your Radlee adventure, you will build and understand real-world Agentic AI systems:
 
-- 📝 **Prompt Engineering & Context Injection**: The Vault uses a fun "Mad Libs" format to help you practice noticing how your specific word choices affect the AI's behavior. By filling in simple templates, you'll learn how to provide Radlee with clear rules, background information, relevant data, and a unique personality.
-- 🧠 **ReAct (Reason and Act) Framework:** Radlee first determines what context it needs and reads it, then it reasons and acts according to the [ReAct machine learning paradigm](https://www.ibm.com/think/topics/react-agent). You'll learn how this 2-step process minimizes hallucinations and reduces the high costs associated with open-ended AI reasoning loops.
-- 🚦 **Rule-Based Guardrails:** Discover how to blend AI autonomy with deterministic safety. Radlee scores its own confidence; if it drops below 85% on a high-stakes action (like selecting a meeting time), a hardcoded safety rule safely downgrades the action to a draft task for human review.
-- 🔁 **RAG (Retrieval-Augmented Generation) & Long-Term Memory:** Learn how AI can "remember" things. When you correct Radlee, it programmatically writes your preference to a Google Doc, and retrieves that doc on the next run, creating a continuous learning loop.
-- 🛡️ **Idempotency (Duplicate-Proof Execution):** Ever worry an AI might glitch and send the same email 100 times? You will learn how to build "Idempotency locks" to guarantee an LLM can never double-book a meeting or create duplicate tasks, even if it loops.
-- 🚦 **Concurrency (Safe Memory Writing):** Learn how to manage "Race Conditions". If you email Radlee three thoughts at the exact same time, it uses a "LockService" to politely queue them up and write them to your memory documents one by one without scrambling data.
+- 📝 **Prompt Engineering (Mad Libs Format):** The Vault uses an interactive "Mad Libs" format to help you notice how specific word choices affect an AI's behavior. By filling templates, you'll learn how to inject rules, constraints, and custom styles into an LLM.
+- 🧠 **The ReAct Paradigm:** Learn how Radlee decides what context it needs, reads it, and reasons before acting—minimizing hallucinations and controlling open-ended AI loop costs.
+- 🚦 **Rule-Based Guardrails:** Discover how to blend AI autonomy with safety. If Radlee's confidence score drops below 85% on high-stakes actions, a guardrail automatically downgrades it to a draft for human approval.
+- 🔁 **Long-Term Memory & RAG:** When you tell Radlee a preference, it programmatically writes it to a Google Doc and reads it on future runs, building a continuous learning loop.
+- 🛡️ **Idempotency Locks:** Guarantee that an LLM can never schedule double-bookings or duplicate tasks, even if its run-loop glitches or retries.
+- 🚦 **Concurrency Management:** Learn how to handle "Race Conditions". If you email Radlee multiple times simultaneously, a Google LockService queues them up to write to your memory documents safely without scrambling data.
 
 ---
-
-
 
 # 👤 User Guide & Setup
 
-*Everything you need to set up and use Radlee. No coding experience required.*
-
-## ⚠️ The "Unsafe" Warning
-
-When you authorize Radlee for the first time, Google shows a warning: **"Google hasn't verified this app."**
-
-This is **expected and completely normal.** Because you are setting this up on your own personal account, Google hasn't reviewed it as a public app. It is perfectly safe because *you* are the only person who controls the code.
-
-**How to get past it:** Click **"Advanced"** → **"Go to [Project Name] (unsafe)"**.
-
----
+*No coding experience required. Follow these steps to onboard your Chief of Staff.*
 
 ## 🛠️ Phase 1: Core Installation (~5 Minutes)
 
-### Step 1: Prepare Your Google Account
-Radlee should be installed on your **active Google account**. This ensures that when Radlee creates Calendar events or Google Tasks, they appear natively on calendar and task lists that are already in your workflow.
-
-To keep Radlee's emails from cluttering your inbox, we use an **Email Alias**. If your email is `jane@gmail.com`, you will communicate with Radlee by emailing `jane+radlee@gmail.com`. Radlee will automatically detect and configure this alias during setup.
+### Step 1: Choose Your Email Alias
+You will talk to Radlee using a Gmail **Email Alias** to keep your inbox clean. If your email is `jane@gmail.com`, you will communicate with Radlee by emailing **`jane+radlee@gmail.com`**. Radlee will auto-detect and register this during setup.
 
 ### Step 2: Create a Google Apps Script Project
 1. Go to [script.google.com](https://script.google.com) and click **New Project**.
-2. Delete any default code you see on the screen.
-3. Copy the full text from the **`Code.gs`** file in this repository and paste it into the editor.
-4. Click the ⚙️ **Project Settings** icon (gear icon) on the left sidebar.
-5. Check the box that says **"Show 'appsscript.json' manifest file in editor"**.
-6. Go back to the Editor (the `< >` icon), click `appsscript.json` in the file list, and replace its contents with the text from the **`appsscript.json`** file in this repository.
-7. Click the **Save** icon (looks like a floppy disk).
+2. Delete any default code in the editor.
+3. Copy the full text from the [**`Code.gs`**](radlee-apps-script/Code.gs) file in this repository and paste it into your editor.
+4. Click the ⚙️ **Project Settings** (gear icon) on the left sidebar.
+5. Check the box **"Show 'appsscript.json' manifest file in editor"**.
+6. Return to the Editor (`< >` icon), click on `appsscript.json` in the file list, and replace its contents with the text from [**`appsscript.json`**](radlee-apps-script/appsscript.json) in this repository.
+7. Click the **Save** (floppy disk) icon.
 
 ### Step 3: Initialize the Engine
-1. Click the ⚙️ **Project Settings** icon (gear icon) on the left sidebar.
-2. Scroll down to **Script Properties** and click **Add script property**. Add the following property (case-sensitive):
-   - `GEMINI_API_KEY`: Your Gemini API key.
+1. Click the ⚙️ **Project Settings** (gear icon) on the left sidebar.
+2. Scroll down to **Script Properties** and click **Add script property**. Add:
+   - **Property (Key):** `GEMINI_API_KEY`
+   - **Value:** Your personal Gemini API key.
    > [!TIP]
-   > **Need an API key?** It's free and easy to get. Go to [aistudio.google.com/app/apikey](https://aistudio.google.com/app/apikey) and generate one.
+   > **Get a free API key instantly** at [aistudio.google.com/app/apikey](https://aistudio.google.com/app/apikey).
 3. Click **Save script properties**.
-4. Go back to the Editor (the `< >` icon). Look for the dropdown menu at the top center. Select `initializeAgent` and click **Run**.
-5. Click through the Google authorization prompts. *(This is where you will see the "unsafe" warning mentioned above.)*
-6. At the bottom of the screen, you will see an "Execution Log". Wait until it says "✅ Radlee Initialized Successfully!".
+4. Go back to the Editor (`< >` icon). Select `initializeAgent` from the top-center function dropdown and click **Run**.
+5. Approve the Google authorization permissions.
+   > [!TIP]
+   > **⚠️ Google's "Unsafe App" Warning (Expected & Normal)**
+   > <details>
+   > <summary><b>Click here to see why this appears and how to proceed...</b></summary>
+   > 
+   > Since you are running this custom script on your own personal Google Account, Google hasn't verified it publicly. It is 100% safe because you are the only person who controls and has access to the code.
+   >
+   > **How to bypass:** Click **"Advanced"** ➔ **"Go to [Project Name] (unsafe)"** ➔ **Allow**.
+   > </details>
+6. Confirm the Execution Log at the bottom completes with: `✅ Radlee Initialized Successfully!`.
 
-### Step 4: Verify Installation
-Radlee will automatically attempt to create the necessary folders and documents in your Google Drive. Let's make sure it worked!
-
-- [ ] Check your Google Drive for a folder named **`Radlee Vault`**.
-- [ ] Open the **`Radlee Vault`**. You should see exactly 7 initial configuration documents inside:
-  - `00_System_Prompt`
-  - `01_Strategic_Context`
-  - `02_Operating_Principles`
-  - `03_Dynamic_Memory`
-  - `05_Areas_of_Focus`
-  - `06_Someday_Maybe`
-  - `07_Context_Folders`
-- [ ] Check your Google Drive for another folder named **`Radlee Approved Outbox`**.
-
-If you see all of these, your Chief of Staff has successfully been onboarded!
+### Step 4: Verify Your Folders
+Radlee will automatically create your vault directories. Open your Google Drive and verify:
+- [ ] A folder named **`Radlee Vault`** exists, containing exactly 7 config documents:
+  `00_System_Prompt`, `01_Strategic_Context`, `02_Operating_Principles`, `03_Dynamic_Memory`, `05_Areas_of_Focus`, `06_Someday_Maybe`, `07_Context_Folders`.
+- [ ] A folder named **`Radlee Approved Outbox`** exists.
 
 ---
 
-> [!IMPORTANT]
-> **🎮 Radlee's Rate: The Daily API Rate Limit**
+> [!NOTE]
+> **⚡ Gemini Free Tier Energy Meter**
+> <details>
+> <summary><b>How to manage your daily API limits...</b></summary>
 > 
-> If you are using the free tier of the Gemini API, you have a set number of API requests you can make per minute and per day. Think of this as the energy meter for your Chief of Staff. 
+> The free Gemini API tier has strict requests-per-minute and daily limits. Think of this as Radlee's energy meter.
 > 
-> **The Challenge:** Prompt Radlee efficiently by batching your instructions (e.g. asking it to schedule a meeting, draft an email, and read a document all in *one* email) to maximize your productivity before hitting the limit. 
-> 
-> **Extend Play:** If you want to pay for more energy, you can [set up billing](https://aistudio.google.com/) in Google AI Studio to buy credits and access higher capacity.
+> To maximize your daily workflow, try **batching your instructions** into a single email (e.g. *"Review my goals, add a task to check Q3 budgets, and draft an outline for Project Alpha"*). You can also set up billing in Google AI Studio to increase capacity.
+> </details>
 
 ---
 
 ## 🗺️ Phase 2: Choose Your Own Adventure (CYOA)
 
-Now that the core Radlee engine is installed, your adventure begins. You can stop at Level 1 to just use Radlee as a powerful productivity tool, or you can continue to level up your skills by extending its code.
-
 ### 🟢 Level 1: The Prompt Engineer (No-Code)
-*(Estimated time: 15 minutes)*
+*Customize Radlee's brain and turn on automatic schedules. (~15 minutes)*
 
-To use Radlee, you first need to program its brain. You will do this without writing any code, using a technique called "Context Injection".
+#### 1. Fill in Your Vault "Mad Libs"
+Open the **`Radlee Vault`** folder in Google Drive. By filling out the blanks in these template documents, you are performing **Context Injection** and **System Prompting** to program Radlee's personality and goals in plain English:
 
-**Task 1: Configure the Vault**
-Open the **`Radlee Vault`** folder in your Google Drive. You'll find 7 documents. These documents are injected directly into Radlee's "Context Window" every time you email it. 
-
-By filling out these Mad Libs exercises, you are practicing **System Prompting** and **Context Injection**. You are literally programming the AI's brain using plain English.
-
-| Document | What to write |
+| Document | Purpose & Action |
 |---|---|
-| `00_System_Prompt` | *(Mad Libs Exercise)* Fill in the blanks to define Radlee's personality and tone. |
-| `01_Strategic_Context` | *(Mad Libs Exercise)* Fill in the blanks to define your GTD Horizons of Focus (Purpose, Vision, Goals). |
-| `02_Operating_Principles` | *(Mad Libs Exercise)* Fill in the blanks to set rules for your energy, boundaries, and communication. |
-| `03_Dynamic_Memory` | Leave blank—Radlee writes here automatically when it learns something. |
+| `00_System_Prompt` | Define Radlee's personality, vocabulary, and communication tone. |
+| `01_Strategic_Context` | Set your GTD Horizons of Focus (your life purpose, vision, and active goals). |
+| `02_Operating_Principles` | Set rules regarding your work hours, energy levels, and preferred communication. |
+| `05_Areas_of_Focus` | Document active operational areas (e.g., career, health, family, finances). |
+| `07_Context_Folders` | Map the folder names and IDs of Google Drive directories you want Radlee to read. |
 
-| `05_Areas_of_Focus` | *(Mad Libs Exercise)* Fill in the blanks to define the key domains of your life and work. |
-| `06_Someday_Maybe` | Leave blank—Radlee adds items here when you say "save this for later." |
-| `07_Context_Folders` | *(Configuration)* Add the names and IDs of other Google Drive folders you want Radlee to be able to read (e.g. project folders or team drives). |
+*Note: `03_Dynamic_Memory` and `06_Someday_Maybe` should be left blank; Radlee writes to them programmatically!*
 
-> [!NOTE]
-> **Note on Context Folders:** Radlee can list all files in external folders and read the text contents of Google Docs, Google Sheets, and plain text/CSV files. **It cannot currently extract text from PDFs or images.**
+#### 2. Turn On Automatic Emails
+In your Google Apps Script editor, select **`setupTriggers`** from the top function dropdown and click **Run**. This schedules Radlee's cron-job to check your emails every 60 seconds and activates your automatic briefings:
+- 🌅 **Morning Brief** (Mon-Fri, 7am): Your top 3 next actions aligned with your schedule and open tasks.
+- 🧭 **Strategy Primer** (Mondays, 7am): Connects recent memory and learnings to your life goals.
+- 🌱 **Weekly Review** (Sundays, 6pm): A structured guided review of your week and planning for the next.
 
-> [!TIP]
-> **Tip:** Start with `01_Strategic_Context` and `05_Areas_of_Focus`. Those two documents are the most important for helping Radlee understand your goals.
+#### 3. Run Self-Diagnostics
+Select **`runSelfDiagnostics`** from the function dropdown in Apps Script and click **Run**. Check the Execution Log at the bottom. If it displays `🎉 SUCCESS! All systems go`, you are ready!
 
-**Task 2: Turn On Automatic Emails**
-Let's turn on Radlee's automated schedules:
-- **In the Apps Script editor:** Select `setupTriggers` from the dropdown menu at the top and click **Run**.
+#### 4. The First Flight & Memory Test ✈️
+1. Open Gmail and send a new email to your alias (e.g. `jane+radlee@gmail.com`) with a subject line (e.g. "Radlee Test").
+2. **Short-Term Memory Test:** Ask: *"I'm thinking of the secret code 'Alpha Tango 42'."* Wait for its response, then reply to the same thread: *"What was my secret code?"* Radlee will remember it!
+3. **Long-Term Memory Test:** Send a new email: *"Learn this preference: I never take meetings before 11:00 AM."* Check `03_Dynamic_Memory` in Google Drive to see it written! Now, ask Radlee to schedule a meeting at 9:00 AM—it will read the Vault and push back.
 
-This sets up Radlee's internal timer so it checks your inbox every minute. It also schedules three proactive emails:
+<details>
+<summary>📨 <b>Optional: Keep Your Inbox Clean Instantly (Gmail Filter Setup)</b></summary>
 
-| Email | When | What's in it |
-|---|---|---|
-| 🌅 Morning Brief | Mon–Fri, 7am | 3 next actions aligned to your schedule and open tasks. |
-| 🧭 Strategy Primer | Every Monday, 7am | Connects your recent learnings (Dynamic Memory) to your Life Purpose and suggests a macro focus for the week. |
-| 🌱 Weekly Review | Every Sunday, 6pm | A review of your week and GTD alignment suggestions for the week ahead. |
+When you email your own alias, Gmail delivers it to your Inbox immediately. If you want to automatically archive these outbound emails so they don't clutter your inbox:
+1. Go to Gmail **Settings > Filters and Blocked Addresses > Create a new filter**.
+2. In the **To** field, type your exact Radlee email (e.g., `jane+radlee@gmail.com`).
+3. Click **Create filter**, check **Skip the Inbox (Archive it)**, and click **Create filter** again.
+</details>
 
-**Task 3: Run Self-Diagnostics**
-Before you start emailing Radlee, let's verify that the Google Apps Script environment is perfectly healthy.
-1. **In the Apps Script editor:** Select `runSelfDiagnostics` from the dropdown menu at the top center and click **Run**.
-2. Look at the Execution Log at the bottom of the screen. 
-3. If it outputs `🎉 SUCCESS! All systems go`, you are guaranteed a smooth experience! If it throws any red `❌` errors, read the error message carefully to fix your API key or permissions before proceeding.
-
-**Task 4: The Multi-Action Test Flight ✈️**
-1. Open Gmail.
-2. Compose a new email to your Radlee email alias (e.g., `jane+radlee@gmail.com`).
-3. **Always include a subject line** (e.g., "Radlee Request" or "Tasks"). Put your actual instructions in the body of the email.
-4. Radlee will process your request and send its response back directly to your primary inbox within a minute or two!
-
-**Task 5: Test the Memory Systems**
-Let's make sure Radlee's two memory systems are working!
-
-1. **Short-Term Memory:** Send Radlee an email saying, *"I am thinking of the secret code 'Alpha Tango 42'."* Wait for its reply, then reply directly back to that thread asking, *"What was the secret code I told you earlier?"* Radlee should successfully recall it!
-2. **Long-Term Memory:** Send Radlee a new email saying, *"Learn this preference: I never take meetings before 11:00 AM."* Wait for the confirmation, then check the `03_Dynamic_Memory` document in your Vault. You should see your preference written there! Now, send a *new* email asking Radlee to schedule a morning meeting. It will read your Vault and push back!
-
-> 📘 **Want to learn how to manage Radlee?** Read the [Operations Manual](docs/adventures/00-managing-radlee.md) to learn how to edit Radlee's memories, grant it access to new Google Drive folders, and incubate ideas!
-
-> [!TIP]
-> **Keep Your Inbox Clean Instantly**
-> When you send an email to yourself (your Radlee alias), Gmail natively delivers it to your Inbox immediately. Radlee will eventually archive it when the script runs every 60 seconds. If you want to instantly hide your outbound messages to Radlee, create a native Gmail Filter:
-> 1. Go to **Settings > Filters and Blocked Addresses > Create a new filter**.
-> 2. In the **To** field, type your exact Radlee email (e.g., `jane+radlee@gmail.com`).
-> 3. Click **Create filter**, then check **Skip the Inbox (Archive it)**.
-> 4. Click **Create filter** again.
-
-
-As soon as Radlee is set up, try sending it a single email with multiple instructions to see its batch-processing power in action. 
-
-Send Radlee an email that says exactly this:
-*"What are my current professional goals? Also, add a task for me to review the Q3 budget tomorrow, send me my strategic alignment primer, and draft a new document called 'Project Alpha' with a brief outline for a new mobile app."*
-
-Radlee will process all of these instructions simultaneously and reply with a summary of its actions!
+> 📘 **Want to learn how to manage Radlee effectively?** Read the [Operations Manual](docs/adventures/00-managing-radlee.md) to learn how to edit memories, grant folder access, or purge saved data.
 
 ---
 
 ### 🟡 Level 2: The Co-Pilot (No-Code)
-*(Estimated time: 5 minutes)*
+*Interact with Radlee like a human teammate. Radlee has a state-of-the-art LLM brain and a Google Workspace action registry.*
 
-Now that Radlee is set up, you can start using it as an autonomous email assistant. Just email it like you'd email a person! 
+#### Interactive Action Showcase
 
-Because Radlee is powered by **Google Gemini**, it possesses the full reasoning, analytical, and writing capabilities of a state-of-the-art Large Language Model. You can ask it to help you brainstorm ideas, plan events, write code...the choice is yours! Radlee will let you know if it needs a code upgrade to fulfill your request.
-
-> [!TIP]
-> **Conversational Memory**
-> Radlee maintains a "rolling window" of your conversation, automatically remembering the last 10 back-and-forth turns of your email thread. This capability is built using **Google Apps Script's native `PropertiesService`**, which acts as a hidden key-value database attached to your script. This allows you to have natural, continuous back-and-forth discussions without needing to restate context! If you want Radlee to remember something permanently, tell it to "save this to your memory."
-
-Radlee is also equipped with an **Action Registry** that allows it to execute specific tasks inside your Google Workspace and read files in its "Vault" to understand your personal context.
-
-**Execution & Integration Examples:**
-| Say... | Radlee does... |
+| What you write | What Radlee does |
 |---|---|
-| *"Schedule lunch with Reginald on Tuesday at 2pm"* | Creates a Google Calendar event |
-| *"Add a task: follow up with contacts from the Sony event"* | Adds to Google Tasks |
-| *"Draft an email to Sarah about the new book club announcement"* | Creates a Gmail draft |
-| *"Review my strategic focus"* | Analyzes your Vault and sends an alignment brief |
+| *"Schedule lunch with Sarah on Tuesday at 1pm."* | Creates a Google Calendar event |
+| *"Add task: buy groceries tomorrow."* | Adds a task directly to Google Tasks |
+| *"Draft an email to Mark about the final Q3 proposal."* | Populates a Gmail draft in your Outbox |
+| *"What are my active professional goals?"* | Reads `01_Strategic_Context` and responds |
+| *"Save to vault: notes from today's meeting..."* | Programmatically writes to your Dynamic Memory |
+| *"Help me brainstorm 5 title ideas for a sci-fi novel."* | Leverages Gemini's raw creative writing capabilities |
 
-**Vault Memory & Alignment Examples:**
-| Say... | Radlee does... |
-|---|---|
-| *"What is my professional focus right now?"* | Reads your strategic objectives doc |
-| *"Which areas of my responsibilities need attention?"*| Reviews your Areas of Focus |
-| *"Add to someday/maybe: explore building an integration"*| Adds to your Someday/Maybe vault document |
-| *"Save to vault: notes from today's partnership talk..."* | Updates your Dynamic Memory/Learnings |
+<details>
+<summary>🔍 <b>See Expanded List of Commands & Capabilities</b></summary>
 
-**Open-Ended Gemini Capabilities:**
-| Say... | Radlee does... |
-|---|---|
-| *"Write a Python script to scrape a website."* | Uses Gemini's coding knowledge to write the script |
-| *"Help me brainstorm 10 titles for my new sci-fi novel."* | Uses Gemini's creative writing abilities |
-| *"Recommend some Focus music Spotify playlists."* | Curates music recommendations tailored to your taste |
-| *"Explain quantum computing to me like I'm 5."* | Synthesizes complex information simply |
-| *"Rewrite this paragraph to sound more professional."* | Edits and refines your text |
+#### Vault Memory & Alignment
+- *"Which areas of my life need attention right now?"* ➔ Reviews your `05_Areas_of_Focus` file.
+- *"Add to someday/maybe: explore building a home gym."* ➔ Appends to your `06_Someday_Maybe` file.
+- *"What preferences have you learned about me?"* ➔ Retrieves current learnings from `03_Dynamic_Memory`.
+
+#### Open-Ended Gemini Reasoning
+- *"Write a Python script to scrape a weather API."* ➔ Uses Gemini's technical coding knowledge.
+- *"Explain quantum physics like I'm five years old."* ➔ Leverages pedagogical synthesis.
+- *"Rewrite this paragraph to sound more professional..."* ➔ Performs copy-editing and refinement.
+</details>
 
 ---
 
 ### 🟠 Level 3: The Tinkerer (Low-Code)
-*Adventures for those who want to look at the code and extend what Radlee can do.*
+*Look under the hood and extend Radlee's core code.*
 
-- 🔍 **Read the Codebase Lessons** — Open `Code.gs` and search for `🎓 LESSON`. The codebase is heavily commented with inline tutorials explaining how the Action Registry, Deterministic Routing, and Idempotency Locks actually work under the hood.
-- 🧩 **[Add a New Action](docs/adventures/01-add-new-action.md)** — Learn how to give Radlee a new native Google Workspace skill, like reading your Calendar or logging to Google Sheets.
+- 🔍 **Read the Codebase Lessons** — Open `Code.gs` and search for `🎓 LESSON`. The script is heavily documented with inline tutorials explaining the action registry, guardrails, and lock systems.
+- 🧩 **[Add a New Action](docs/adventures/01-add-new-action.md)** — Give Radlee new native workspace skills, like reading your Calendar or logging to Google Sheets.
 
 ### 🔴 Level 4: The Engineer (Pro-Code)
+*Integrate production-grade developer patterns.*
 
-- 🧠 **[Build a Vector Database](docs/adventures/02-vector-database.md)** — Learn how to replace full-document reading with semantic similarity search to scale Radlee's long-term memory.
-- 🔄 **[Trigger External Webhooks Safely](docs/adventures/03-external-api-webhooks.md)** — Learn how to build a deterministic webhook architecture to trigger workflows in tools like Zapier, Make.com, or Vercel.
+- 🧠 **[Build a Vector Database](docs/adventures/02-vector-database.md)** — Replace full-file scans with semantic similarity search to scale Radlee's long-term memory.
+- 🔄 **[Trigger External Webhooks Safely](docs/adventures/03-external-api-webhooks.md)** — Construct a deterministic webhook architecture to trigger actions in tools like Zapier, Make, or Vercel.
 
 ---
 
@@ -246,18 +198,17 @@ Radlee is also equipped with an **Action Registry** that allows it to execute sp
 
 ```
 radlee-apps-script/
-├── Code.gs           — All the logic for Radlee (single-file Apps Script)
-├── appsscript.json   — Configuration file (tells Google what permissions are needed)
-└── docs/             — CYOA adventure tutorials
+├── Code.gs           — Single-file Apps Script logic (all core AI/action code)
+├── appsscript.json   — Project configuration and Google API authorization scopes
+└── docs/             — CYOA tutorials and operation manuals
 ```
 
 ---
 
 ## Legal Disclaimer & Trademarks
-Radlee is an independent, open-source project and is **not** affiliated with, endorsed by, or sponsored by any of the companies or trademark holders mentioned in this repository. 
+Radlee is an independent, open-source educational project and is **not** affiliated with, endorsed by, or sponsored by any of the trademark holders mentioned:
+- **Getting Things Done®** and **GTD®** are registered trademarks of the David Allen Company.
+- **Choose Your Own Adventure®** is a registered trademark of Chooseco LLC.
+- **Mad Libs®** is a registered trademark of Penguin Random House LLC.
 
-*   **Getting Things Done®** and **GTD®** are registered trademarks of the David Allen Company. 
-*   **Choose Your Own Adventure®** is a registered trademark of Chooseco LLC.
-*   **Mad Libs®** is a registered trademark of Penguin Random House LLC.
-
-Any use of these terms in this project is for descriptive and educational purposes only (nominative fair use).
+*Any use of these terms is for descriptive and educational purposes only (nominative fair use).*
