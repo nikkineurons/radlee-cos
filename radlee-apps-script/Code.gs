@@ -400,6 +400,44 @@ function processAgentRequest(userInput, sessionHistory = []) {
 // hardcoded, native Google Apps Script function (like execEmailAction). This guarantees 
 // the execution phase is 100% deterministic, predictable, and safe.
 function handleStructuredRouting(action, params, SETTINGS) {
+  params = params || {};
+
+  // ─── CENTRALIZED DEFENSIVE PARAMETER NORMALIZATION ───────────────────
+  // Map common alternative names/aliases into expected system parameters
+
+  // 1. Unified Document / File Names (cross-map both directions)
+  if (!params.doc_name && params.file_name) params.doc_name = params.file_name;
+  if (!params.file_name && params.doc_name) params.file_name = params.doc_name;
+  if (!params.doc_name) params.doc_name = params.title || params.document || params.docName;
+  if (!params.file_name) params.file_name = params.file || params.document || params.fileName;
+
+  // 2. Calendar Event Properties
+  if (!params.title) params.title = params.event_title || params.subject || params.name || params.eventTitle;
+  if (!params.iso) params.iso = params.time || params.timeStr || params.dateTime || params.date || params.when || params.timestamp;
+  if (!params.duration_mins) params.duration_mins = params.duration || params.mins || params.length || params.durationMinutes;
+  if (!params.guests) params.guests = params.guest_list || params.attendees || params.emails || params.guestList;
+  if (!params.rrule) params.rrule = params.recurrence || params.repeat || params.recurrence_rule;
+
+  // 3. Email & Communications
+  if (!params.recipient) params.recipient = params.to || params.email || params.email_address || params.address || params.toAddress;
+  if (!params.subject) params.subject = params.title || params.email_subject || params.emailSubject;
+  if (!params.body) params.body = params.message || params.content || params.text || params.email_body || params.emailBody;
+
+  // 4. Memory, Learn & Incubate (Dynamic Vaults)
+  if (!params.learning) params.learning = params.preference || params.fact || params.memory || params.note || params.content || params.insight;
+  if (!params.description) params.description = params.idea || params.task || params.note || params.content || params.summary;
+
+  // 5. Folders & File Trees
+  if (!params.folder_name) params.folder_name = params.folder || params.name || params.folderName;
+
+  // 6. Searches & Queries
+  if (!params.query) params.query = params.search_query || params.name || params.contact_name || params.q || params.search || params.searchQuery;
+
+  // 7. Tasks & Todos
+  if (!params.notes) params.notes = params.note || params.description || params.body || params.details || params.task_notes || params.taskNotes;
+
+  // ─────────────────────────────────────────────────────────────────────
+
   const missing = [];
   const requireParam = (field) => { if (!params[field] || !params[field].toString().trim()) missing.push(field); };
 
@@ -415,7 +453,6 @@ function handleStructuredRouting(action, params, SETTINGS) {
       return appendToIncubate(params.description, SETTINGS.VAULT_ID);
 
     case "READ_DOC":
-      if (!params.doc_name && params.file_name) params.doc_name = params.file_name;
       requireParam("doc_name");
       if (missing.length) return `⚠️ Parameter Error: Missing required param [${missing.join(", ")}] for action ${action}. Ask user to clarify or supply the param.`;
       return execReadDoc(params.doc_name, SETTINGS.VAULT_ID);
@@ -426,7 +463,6 @@ function handleStructuredRouting(action, params, SETTINGS) {
       return execListFolderFiles(params.folder_name, SETTINGS.CONTEXT_FOLDERS);
 
     case "READ_FILE":
-      if (!params.file_name && params.doc_name) params.file_name = params.doc_name;
       requireParam("folder_name");
       requireParam("file_name");
       if (missing.length) return `⚠️ Parameter Error: Missing required param [${missing.join(", ")}] for action ${action}. Ask user to clarify or supply the param.`;
@@ -447,14 +483,12 @@ function handleStructuredRouting(action, params, SETTINGS) {
       return execIdempotent(`CALENDAR|${params.title}|${params.iso}`, () => execCalendarAction(params.title, params.iso, params.duration_mins, params.guests, params.rrule));
 
     case "DOC":
-      if (!params.doc_name && params.file_name) params.doc_name = params.file_name;
       requireParam("doc_name");
       requireParam("content");
       if (missing.length) return `⚠️ Parameter Error: Missing required param [${missing.join(", ")}] for action ${action}. Ask user to clarify or supply the param.`;
       return execIdempotent(`DOC|${params.doc_name}`, () => execDocAction(params.doc_name, params.content, SETTINGS.VAULT_ID));
 
     case "APPROVE_DOC":
-      if (!params.doc_name && params.file_name) params.doc_name = params.file_name;
       requireParam("doc_name");
       if (missing.length) return `⚠️ Parameter Error: Missing required param [${missing.join(", ")}] for action ${action}. Ask user to clarify or supply the param.`;
       return execIdempotent(`APPROVE_DOC|${params.doc_name}`, () => execApproveDoc(params.doc_name, SETTINGS.VAULT_ID, SETTINGS.APPROVED_ID));
@@ -467,7 +501,6 @@ function handleStructuredRouting(action, params, SETTINGS) {
       return execIdempotent(`EMAIL|${params.recipient}|${params.subject}`, () => execEmailAction(params.recipient, params.subject, params.body));
 
     case "PDF_EMAIL":
-      if (!params.doc_name && params.file_name) params.doc_name = params.file_name;
       requireParam("doc_name");
       requireParam("recipient");
       requireParam("subject");
