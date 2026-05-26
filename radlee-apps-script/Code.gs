@@ -612,7 +612,12 @@ function callGeminiStructured(systemPrompt, contentsArray, apiKey, responseSchem
 }
 
 // --- 6. DATA UTILITIES (Settings, Vault, Actuators) ---
+
+var _cachedSettings = null; // Thread-level global memory cache
+
 function loadSettings() {
+  if (_cachedSettings) return _cachedSettings;
+  
   const props = PropertiesService.getScriptProperties().getProperties();
   
   const settings = {
@@ -632,11 +637,22 @@ function loadSettings() {
   if (!settings.OWNER_EMAIL) throw new Error("OWNER_EMAIL not found in Script Properties. Please run initializeAgent.");
   if (!settings.RADLEE_EMAIL) throw new Error("RADLEE_EMAIL not found in Script Properties. Please run initializeAgent.");
 
+  _cachedSettings = settings;
   return settings;
 }
 
 function getContextFolders(vaultId) {
   if (!vaultId) return {};
+  
+  const cache = CacheService.getScriptCache();
+  const cacheKey = 'ctx_folders_' + vaultId;
+  const cached = cache.get(cacheKey);
+  if (cached) {
+    try {
+      return JSON.parse(cached);
+    } catch(e) { /* ignore cache parse error */ }
+  }
+
   try {
     const folder = DriveApp.getFolderById(vaultId);
     const files = folder.getFilesByName("07_Context_Folders");
@@ -654,6 +670,13 @@ function getContextFolders(vaultId) {
         folders[name] = id;
       }
     }
+    
+    try {
+      cache.put(cacheKey, JSON.stringify(folders), CONFIG.VAULT_CACHE_TIME);
+    } catch (e) {
+      console.warn("Failed to write CONTEXT_FOLDERS to cache: " + e.message);
+    }
+    
     return folders;
   } catch (e) {
     console.warn("Could not load 07_Context_Folders: " + e.message);
@@ -1425,7 +1448,13 @@ Structure the email exactly as:
 function flushPersonaCache() {
   const SETTINGS = loadSettings();
   invalidateSystemPromptCache(SETTINGS.VAULT_ID);
-  console.log("✅ AI persona cache cleared. Changes to 00_System_Prompt are now live.");
+  
+  // Also flush context folders cache and in-memory global state
+  const cache = CacheService.getScriptCache();
+  cache.remove('ctx_folders_' + SETTINGS.VAULT_ID);
+  _cachedSettings = null;
+  
+  console.log("✅ AI persona and context folder cache cleared. Live changes are now active.");
 }
 
 function setupTriggers() {
