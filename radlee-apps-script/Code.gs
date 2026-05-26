@@ -105,8 +105,30 @@ function processEmailInbox() {
           saveUserHistory(userId, rawText, responseText);
         }
       } catch (err) {
-        responseText = "⚠️ Error processing request: " + err.message;
-        logAuditActivity("Email_Poller", "Error", rawText.substring(0, 100), err.message, "FAIL");
+        const errMsg = err.message || "";
+        const isQuota = errMsg.toLowerCase().includes("exhausted") || 
+                        errMsg.toLowerCase().includes("quota") || 
+                        errMsg.toLowerCase().includes("rate limit") || 
+                        errMsg.toLowerCase().includes("too many requests") || 
+                        errMsg.toLowerCase().includes("limit exceeded") || 
+                        errMsg.includes("429");
+                        
+        if (isQuota) {
+          responseText = 
+            `⚡ **Radlee's Energy Meter: 0% (Stamina Exhausted!)** 💤\n\n` +
+            `"Whew! I've been running at full capacity today, and my cognitive stamina has been fully depleted. Even Chiefs of Staff need some recharge time! 🛌"\n\n` +
+            `**🔋 Game Stats & Recovery:**\n` +
+            `- **Current Energy:** 0% (Temporary Cooldown Activated)\n` +
+            `- **Status:** Fast Asleep 😴\n` +
+            `- **Next Respawn:** My energy meter resets automatically shortly (usually in 60 seconds for minute limits, or at midnight Pacific Time for daily limits).\n\n` +
+            `**🛠️ How to Level Up Your Energy:**\n` +
+            `1. **Combine Your Quests:** Try **batching** multiple requests into a single email (e.g., *"What are my active professional goals? Also, add a task to check Q3 budgets, and draft a document called 'Project Alpha'..."*). This only uses 1 API hit instead of several!\n` +
+            `2. **Upgrade Your Mana Pool:** If you are playing on the Free Tier and want a larger energy tank, you can [set up billing](https://aistudio.google.com/) in Google AI Studio to purchase cheap developer credits and access massive, paid limits.\n\n` +
+            `I'll be fully energized and ready for your next command as soon as my cooldown period expires! 🚀`;
+        } else {
+          responseText = "⚠️ Error processing request: " + errMsg;
+        }
+        logAuditActivity("Email_Poller", "Error", rawText.substring(0, 100), errMsg, "FAIL");
       }
 
       // Reply directly to the thread to maintain conversation history
