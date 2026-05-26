@@ -9,7 +9,7 @@
 // ═══════════════════════════════════════════════════════════════════
 
 const CONFIG = {
-  MODEL_VERSION: "gemini-2.5-flash",
+  MODEL_VERSION: "gemini-3.5-flash",
   HISTORY_LIMIT: 10,
   VAULT_CACHE_TIME: 300 // 5 minutes
 };

@@ -8,11 +8,6 @@
         "version": "v1"
       },
       {
-        "userSymbol": "Drive",
-        "serviceId": "drive",
-        "version": "v2"
-      },
-      {
         "userSymbol": "Calendar",
         "serviceId": "calendar",
         "version": "v3"
