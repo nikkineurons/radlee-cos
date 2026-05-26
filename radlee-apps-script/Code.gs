@@ -1269,7 +1269,7 @@ Structure the briefing exactly as:
 
     const report = callGemini(systemPrompt, [{"role": "user", "parts": [{"text": taskPrompt}]}], SETTINGS.API_KEY, false);
 
-    sendIsolatedEmail(myEmail, `🌱 Radlee Weekly GTD Alignment Briefing`, report, {
+    sendIsolatedEmail(myEmail, `Radlee Weekly GTD Alignment Briefing`, report, {
       name: SETTINGS.ASSISTANT_NAME || "Radlee"
     });
 
@@ -1321,7 +1321,7 @@ function runStrategyPrimer() {
       '<p style="color:#94a3b8;font-size:11px;">Sent automatically by Radlee.</p>' +
       '</div>';
 
-    sendIsolatedEmail(myEmail, "🧭 Radlee: Your Weekly Strategic Primer", report, {
+    sendIsolatedEmail(myEmail, "Radlee: Your Weekly Strategic Primer", report, {
       name: SETTINGS.ASSISTANT_NAME || "Radlee",
       htmlBody: emailHtml
     });
@@ -1434,7 +1434,7 @@ Structure the email exactly as:
     const brief   = callGemini(systemPrompt, [{"role":"user","parts":[{"text":taskPrompt}]}], SETTINGS.API_KEY, false);
     const dayName = new Date().toLocaleDateString("en-US", { weekday: "long" });
 
-    sendIsolatedEmail(myEmail, "🌅 Radlee Morning Brief — " + dayName, brief, {
+    sendIsolatedEmail(myEmail, "Radlee Morning Brief — " + dayName, brief, {
       name: SETTINGS.ASSISTANT_NAME || "Radlee"
     });
 
