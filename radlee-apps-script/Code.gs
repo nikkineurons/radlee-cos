@@ -192,10 +192,10 @@ function processAgentRequest(userInput, sessionHistory = []) {
               "params": {
                 "type": "OBJECT",
                 "properties": { 
-                  "doc_name": { "type": "STRING", "description": "Required for READ_DOC." },
+                  "doc_name": { "type": "STRING", "description": "Required for READ_DOC. The name of the document in the Vault." },
                   "query": { "type": "STRING", "description": "Required for SEARCH_CONTACTS. The name of the person to look up." },
                   "folder_name": { "type": "STRING", "description": "Required for LIST_FOLDER_FILES and READ_FILE. The name of the folder." },
-                  "file_name": { "type": "STRING", "description": "Required for READ_FILE. The name of the file to read." }
+                  "file_name": { "type": "STRING", "description": "Required for READ_FILE. The name of the file in the external folder." }
                 }
               }
             },
@@ -393,6 +393,7 @@ function handleStructuredRouting(action, params, SETTINGS) {
       return appendToIncubate(params.description, SETTINGS.VAULT_ID);
 
     case "READ_DOC":
+      if (!params.doc_name && params.file_name) params.doc_name = params.file_name;
       requireParam("doc_name");
       if (missing.length) return `⚠️ Parameter Error: Missing required param [${missing.join(", ")}] for action ${action}. Ask user to clarify or supply the param.`;
       return execReadDoc(params.doc_name, SETTINGS.VAULT_ID);
@@ -403,6 +404,7 @@ function handleStructuredRouting(action, params, SETTINGS) {
       return execListFolderFiles(params.folder_name, SETTINGS.CONTEXT_FOLDERS);
 
     case "READ_FILE":
+      if (!params.file_name && params.doc_name) params.file_name = params.doc_name;
       requireParam("folder_name");
       requireParam("file_name");
       if (missing.length) return `⚠️ Parameter Error: Missing required param [${missing.join(", ")}] for action ${action}. Ask user to clarify or supply the param.`;
@@ -423,12 +425,14 @@ function handleStructuredRouting(action, params, SETTINGS) {
       return execIdempotent(`CALENDAR|${params.title}|${params.iso}`, () => execCalendarAction(params.title, params.iso, params.duration_mins, params.guests, params.rrule));
 
     case "DOC":
+      if (!params.doc_name && params.file_name) params.doc_name = params.file_name;
       requireParam("doc_name");
       requireParam("content");
       if (missing.length) return `⚠️ Parameter Error: Missing required param [${missing.join(", ")}] for action ${action}. Ask user to clarify or supply the param.`;
       return execIdempotent(`DOC|${params.doc_name}`, () => execDocAction(params.doc_name, params.content, SETTINGS.VAULT_ID));
 
     case "APPROVE_DOC":
+      if (!params.doc_name && params.file_name) params.doc_name = params.file_name;
       requireParam("doc_name");
       if (missing.length) return `⚠️ Parameter Error: Missing required param [${missing.join(", ")}] for action ${action}. Ask user to clarify or supply the param.`;
       return execIdempotent(`APPROVE_DOC|${params.doc_name}`, () => execApproveDoc(params.doc_name, SETTINGS.VAULT_ID, SETTINGS.APPROVED_ID));
@@ -441,6 +445,7 @@ function handleStructuredRouting(action, params, SETTINGS) {
       return execIdempotent(`EMAIL|${params.recipient}|${params.subject}`, () => execEmailAction(params.recipient, params.subject, params.body));
 
     case "PDF_EMAIL":
+      if (!params.doc_name && params.file_name) params.doc_name = params.file_name;
       requireParam("doc_name");
       requireParam("recipient");
       requireParam("subject");
@@ -1070,7 +1075,9 @@ function processVoicemail(base64Data, mimeType, textContext) {
                   "learning":  { "type": "STRING" },
                   "preference":{ "type": "STRING" },
                   "description":{ "type": "STRING" },
-                  "guests":    { "type": "STRING", "description": "Comma-separated list of email addresses for attendees." }
+                  "guests":    { "type": "STRING", "description": "Comma-separated list of email addresses for attendees." },
+                  "folder_name": { "type": "STRING", "description": "Required for LIST_FOLDER_FILES and READ_FILE. The name of the folder." },
+                  "file_name":   { "type": "STRING", "description": "Required for READ_FILE. The name of the file to read." }
                 }
               }
             },

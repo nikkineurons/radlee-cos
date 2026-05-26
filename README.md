@@ -27,7 +27,7 @@ From there, you can explore **The Radlee Curriculum** to learn the inner working
 
 By leveling up your Radlee adventure, you will learn how to build reliable AI systems:
 
-- 📝 **Prompt Engineering & Context Injection**: The Vault uses a fun "Mad Libs" format to help you practice adjusting specific words in your prompts and agent instructions to affect the AI's behavior. By filling in simple templates, you'll learn how to provide Radlee with clear rules, background information, relevant data, and a unique personality.
+- 📝 **Prompt Engineering & Context Injection**: The Vault uses a fun "Mad Libs" format to help you practice noticing how your specific word choices affect the AI's behavior. By filling in simple templates, you'll learn how to provide Radlee with clear rules, background information, relevant data, and a unique personality.
 - 🧠 **ReAct (Reason and Act) Framework:** Radlee first determines what context it needs and reads it, then it reasons and acts according to the [ReAct machine learning paradigm](https://www.ibm.com/think/topics/react-agent). You'll learn how this 2-step process minimizes hallucinations and reduces the high costs associated with open-ended AI reasoning loops.
 - 🚦 **Rule-Based Guardrails:** Discover how to blend AI autonomy with deterministic safety. Radlee scores its own confidence; if it drops below 85% on a high-stakes action (like selecting a meeting time), a hardcoded safety rule safely downgrades the action to a draft task for human review.
 - 🔁 **RAG (Retrieval-Augmented Generation) & Long-Term Memory:** Learn how AI can "remember" things. When you correct Radlee, it programmatically writes your preference to a Google Doc, and retrieves that doc on the next run, creating a continuous learning loop.
@@ -162,6 +162,14 @@ Before you start emailing Radlee, let's verify that the Google Apps Script envir
 2. Compose a new email to your Radlee email alias (e.g., `jane+radlee@gmail.com`).
 3. **Always include a subject line** (e.g., "Radlee Request" or "Tasks"). Put your actual instructions in the body of the email.
 4. Radlee will process your request and send its response back directly to your primary inbox within a minute or two!
+
+**Task 5: Test the Memory Systems**
+Let's make sure Radlee's two memory systems are working!
+
+1. **Short-Term Memory:** Send Radlee an email saying, *"I am thinking of the secret code 'Alpha Tango 42'."* Wait for its reply, then reply directly back to that thread asking, *"What was the secret code I told you earlier?"* Radlee should successfully recall it!
+2. **Long-Term Memory:** Send Radlee a new email saying, *"Learn this preference: I never take meetings before 11:00 AM."* Wait for the confirmation, then check the `03_Dynamic_Memory` document in your Vault. You should see your preference written there! Now, send a *new* email asking Radlee to schedule a morning meeting. It will read your Vault and push back!
+
+> 📘 **Want to learn how to manage Radlee?** Read the [Operations Manual](docs/adventures/00-managing-radlee.md) to learn how to edit Radlee's memories, grant it access to new Google Drive folders, and incubate ideas!
 
 > [!TIP]
 > **Keep Your Inbox Clean Instantly**
