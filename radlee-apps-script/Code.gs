@@ -332,9 +332,16 @@ function processAgentRequest(userInput, sessionHistory = []) {
             }
           }]
         });
-      } else {
         // Model chose not to call any more tools; we have our final text response!
-        let finalOutput = part.text || "Done.";
+        let finalOutput = part.text;
+        if (!finalOutput || !finalOutput.trim()) {
+          const hasError = finalObservations.some(obs => obs.toLowerCase().includes("error:"));
+          if (hasError) {
+            finalOutput = "I encountered an issue executing your request and could not complete all actions.";
+          } else {
+            finalOutput = "Done.";
+          }
+        }
         
         // Deterministic Prompt Leakage Guardrail
         const lowerOut = finalOutput.toLowerCase();
