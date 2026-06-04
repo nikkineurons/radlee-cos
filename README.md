@@ -134,7 +134,7 @@ In your Google Apps Script editor, select **`setupTriggers`** from the top funct
 #### 3. Run Self-Diagnostics
 Select **`runSelfDiagnostics`** from the function dropdown in Apps Script and click **Run**. Check the Execution Log at the bottom. If it displays `🎉 SUCCESS! All systems go`, you are ready!
 
-#### 4. The First Flight & Memory Test ✈️
+#### 4. The First Flight & Memory Test
 1. Open Gmail and send a new email to your alias (e.g. `jane+radlee@gmail.com`) with a subject line (e.g. "Radlee Test").
 2. **Short-Term Memory Test:** Ask: *"I'm thinking of the secret code 'Alpha Tango 42'."* Wait for its response, then reply to the same thread: *"What was my secret code?"* Radlee will remember it!
 3. **Long-Term Memory Test:** Send a new email: *"Learn this preference: I never take meetings before 11:00 AM."* Check `03_Dynamic_Memory` in Google Drive to see it written! Now, ask Radlee to schedule a meeting at 9:00 AM—it will read the Vault and push back.
@@ -185,8 +185,8 @@ When you email your own alias, Gmail delivers it to your Inbox immediately. If y
 ### Level 3: The Tinkerer (Low-Code)
 *Look under the hood and extend Radlee's core code.*
 
-- 🔍 **Read the Codebase Lessons** — Open `Code.gs` and search for `🎓 LESSON`. The script is heavily documented with inline tutorials explaining the action registry, guardrails, and lock systems.
-- 🧩 **[Add a New Action](docs/adventures/01-add-new-action.md)** — Give Radlee new native workspace skills, like reading your Calendar or logging to Google Sheets.
+- **Read the Codebase Lessons** — Open `Code.gs` and search for `🎓 LESSON`. The script is heavily documented with inline tutorials explaining the action registry, guardrails, and lock systems.
+- **[Add a New Action](docs/adventures/01-add-new-action.md)** — Give Radlee new native workspace skills, like reading your Calendar or logging to Google Sheets.
 
 ### Level 4: The Engineer (Pro-Code)
 *Integrate production-grade developer patterns.*
