@@ -10,7 +10,7 @@ You can set Radlee up in about 20 minutes to get a fully functional, zero-cost, 
 
 ---
 
-## 🗺️ Your Onboarding Roadmap
+## Your Onboarding Roadmap
 
 ```
 ┌──────────────────────────┐     ┌──────────────────────────┐     ┌──────────────────────────┐
@@ -22,16 +22,16 @@ You can set Radlee up in about 20 minutes to get a fully functional, zero-cost, 
 
 ---
 
-## ✨ Core Features & Benefits
+## Core Features & Benefits
 
-- 🔒 **Secure Email Interface:** Radlee only responds to your approved email address, completely ignoring unauthorized senders.
-- 💸 **100% Free / Low Cost:** Optimized to work within the daily free tier limit of the Gemini API. You can expand capacity by adding billing details if you desire.
-- 📅 **Workspace Actions:** Radlee schedules Google Calendar events, creates Google Tasks, drafts Gmail replies, and creates Google Docs natively.
-- 🎯 **Goal Alignment:** Radlee parses your custom "Radlee Vault" documents to align every action with your high-level priorities and values.
-- 🌅 **Automated Briefings:** Receives morning operational digests (daily), strategic primers (Mondays), and structured GTD Weekly Reviews (Sundays) automatically.
-- 🎙️ **Voice Commands:** Send an audio file attachment (voice note). Radlee transcribes your speech, understands your request, and runs the appropriate workspace action.
-- ♿ **Highly Accessible:** Operates purely via email text and audio attachments. It integrates natively with your existing assistive technologies (like screen readers or voice dictation) without any new layouts or dashboards to navigate.
-- 🌍 **Global Language Support:** Powered by Gemini, Radlee understands and communicates in dozens of languages (Spanish, Japanese, French, Portuguese, etc.). Simply write your prompts, Vault files, and emails in your preferred language!
+- **Secure Email Interface:** Radlee only responds to your approved email address, completely ignoring unauthorized senders.
+- **100% Free / Low Cost:** Optimized to work within the daily free tier limit of the Gemini API. You can expand capacity by adding billing details if you desire.
+- **Workspace Actions:** Radlee schedules Google Calendar events, creates Google Tasks, drafts Gmail replies, and creates Google Docs natively.
+- **Goal Alignment:** Radlee parses your custom "Radlee Vault" documents to align every action with your high-level priorities and values.
+- **Automated Briefings:** Receives morning operational digests (daily), strategic primers (Mondays), and structured GTD Weekly Reviews (Sundays) automatically.
+- **Voice Commands:** Send an audio file attachment (voice note). Radlee transcribes your speech, understands your request, and runs the appropriate workspace action.
+- **Highly Accessible:** Operates purely via email text and audio attachments. It integrates natively with your existing assistive technologies (like screen readers or voice dictation) without any new layouts or dashboards to navigate.
+- **Global Language Support:** Powered by Gemini, Radlee understands and communicates in dozens of languages (Spanish, Japanese, French, Portuguese, etc.).
 
 ---
 
@@ -39,12 +39,12 @@ You can set Radlee up in about 20 minutes to get a fully functional, zero-cost, 
 
 By leveling up your Radlee adventure, you will build and understand real-world Agentic AI systems:
 
-- 📝 **Prompt Engineering (Mad Libs Format):** The Vault uses an interactive "Mad Libs" format to help you notice how specific word choices affect an AI's behavior. By filling templates, you'll learn how to inject rules, constraints, and custom styles into an LLM.
-- 🧠 **The ReAct Framework:** Learn how Radlee decides what context it needs, reads it, and reasons before acting—minimizing hallucinations and controlling open-ended AI loop costs.
-- 🚦 **Rule-Based Guardrails:** Discover how to blend AI autonomy with safety. If Radlee's confidence score drops below 85% on high-stakes actions, a guardrail automatically downgrades it to a draft for human approval.
-- 🔁 **Long-Term Memory & RAG:** When you tell Radlee a preference, it programmatically writes it to a Google Doc and reads it on future runs, building a continuous learning loop.
-- 🛡️ **Idempotency Locks:** Guarantee that an LLM can never schedule double-bookings or duplicate tasks, even if its run-loop glitches or retries.
-- 🚦 **Concurrency Management:** Learn how to handle "Race Conditions". If you email Radlee multiple times simultaneously, a Google LockService queues them up to write to your memory documents safely without scrambling data.
+- **Prompt Engineering (Mad Libs Format):** The Vault uses an interactive "Mad Libs" format to help you notice how specific word choices affect an AI's behavior. By filling templates, you'll learn how to inject rules, constraints, and custom styles into an LLM.
+- **The ReAct Framework:** Learn how Radlee decides what context it needs, reads it, and reasons before acting—minimizing hallucinations and controlling open-ended AI loop costs.
+- **Rule-Based Guardrails:** Discover how to blend AI autonomy with safety. If Radlee's confidence score drops below 85% on high-stakes actions, a guardrail automatically downgrades it to a draft for human approval.
+- **Long-Term Memory & RAG:** When you tell Radlee a preference, it programmatically writes it to a Google Doc and reads it on future runs, building a continuous learning loop.
+- **Idempotency Locks:** Guarantee that an LLM can never schedule double-bookings or duplicate tasks, even if its run-loop glitches or retries.
+- **Concurrency Management:** Learn how to handle "Race Conditions". If you email Radlee multiple times simultaneously, a Google LockService queues them up to write to your memory documents safely without scrambling data.
 
 ---
 
@@ -52,7 +52,7 @@ By leveling up your Radlee adventure, you will build and understand real-world A
 
 *No coding experience required. Follow these steps to onboard your Chief of Staff.*
 
-## 🛠️ Phase 1: Core Installation (~5 Minutes)
+## Phase 1: Core Installation (~5 Minutes)
 
 ### Step 1: Choose Your Email Alias
 You will talk to Radlee using a Gmail **Email Alias** to keep your inbox clean. If your email is `jane@gmail.com`, you will communicate with Radlee by emailing **`jane+radlee@gmail.com`**. Radlee will auto-detect and register this during setup.
@@ -107,9 +107,9 @@ Radlee will automatically create your vault directories. Open your Google Drive 
 
 ---
 
-## 🗺️ Phase 2: Choose Your Own Adventure (CYOA)
+## Phase 2: Choose Your Own Adventure (CYOA)
 
-### 🟢 Level 1: The Prompt Engineer (No-Code)
+### Level 1: The Prompt Engineer (No-Code)
 *Customize Radlee's brain and turn on automatic schedules. (~15 minutes)*
 
 #### 1. Fill in Your Vault "Mad Libs"
@@ -127,9 +127,9 @@ Open the **`Radlee Vault`** folder in Google Drive. By filling out the blanks in
 
 #### 2. Turn On Automatic Emails
 In your Google Apps Script editor, select **`setupTriggers`** from the top function dropdown and click **Run**. This schedules Radlee's cron-job to check your emails every 60 seconds and activates your automatic briefings:
-- 🌅 **Morning Brief** (Mon-Fri, 7am): Your top 3 next actions aligned with your schedule and open tasks.
-- 🧭 **Strategy Primer** (Mondays, 7am): Connects recent memory and learnings to your life goals.
-- 🌱 **Weekly Review** (Sundays, 6pm): A structured guided review of your week and planning for the next.
+- **Morning Brief** (Mon-Fri, 7am): Your top 3 next actions aligned with your schedule and open tasks.
+- **Strategy Primer** (Mondays, 7am): Connects recent memory and learnings to your life goals.
+- **Weekly Review** (Sundays, 6pm): A structured guided review of your week and planning for the next.
 
 #### 3. Run Self-Diagnostics
 Select **`runSelfDiagnostics`** from the function dropdown in Apps Script and click **Run**. Check the Execution Log at the bottom. If it displays `🎉 SUCCESS! All systems go`, you are ready!
@@ -148,11 +148,11 @@ When you email your own alias, Gmail delivers it to your Inbox immediately. If y
 3. Click **Create filter**, check **Skip the Inbox (Archive it)**, and click **Create filter** again.
 </details>
 
-> 📘 **Want to learn how to manage Radlee effectively?** Read the [Operations Manual](docs/adventures/00-managing-radlee.md) to learn how to edit memories, grant folder access, or purge saved data.
+> **Want to learn how to manage Radlee effectively?** Read the [Operations Manual](docs/adventures/00-managing-radlee.md) to learn how to edit memories, grant folder access, or purge saved data.
 
 ---
 
-### 🟡 Level 2: The Co-Pilot (No-Code)
+### Level 2: The Co-Pilot (No-Code)
 *Interact with Radlee like a human teammate. Radlee has a state-of-the-art LLM brain and a Google Workspace action registry.*
 
 #### Interactive Action Showcase
@@ -182,17 +182,17 @@ When you email your own alias, Gmail delivers it to your Inbox immediately. If y
 
 ---
 
-### 🟠 Level 3: The Tinkerer (Low-Code)
+### Level 3: The Tinkerer (Low-Code)
 *Look under the hood and extend Radlee's core code.*
 
 - 🔍 **Read the Codebase Lessons** — Open `Code.gs` and search for `🎓 LESSON`. The script is heavily documented with inline tutorials explaining the action registry, guardrails, and lock systems.
 - 🧩 **[Add a New Action](docs/adventures/01-add-new-action.md)** — Give Radlee new native workspace skills, like reading your Calendar or logging to Google Sheets.
 
-### 🔴 Level 4: The Engineer (Pro-Code)
+### Level 4: The Engineer (Pro-Code)
 *Integrate production-grade developer patterns.*
 
-- 🧠 **[Build a Vector Database](docs/adventures/02-vector-database.md)** — Replace full-file scans with semantic similarity search to scale Radlee's long-term memory.
-- 🔄 **[Trigger External Webhooks Safely](docs/adventures/03-external-api-webhooks.md)** — Construct a deterministic webhook architecture to trigger actions in tools like Zapier, Make, or Vercel.
+- **[Build a Vector Database](docs/adventures/02-vector-database.md)** — Replace full-file scans with semantic similarity search to scale Radlee's long-term memory.
+- **[Trigger External Webhooks Safely](docs/adventures/03-external-api-webhooks.md)** — Construct a deterministic webhook architecture to trigger actions in tools like Zapier, Make, or Vercel.
 
 ---
 
