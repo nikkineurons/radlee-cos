@@ -1,6 +1,6 @@
 # Radlee (v0.1.0-beta) — The Open-Source Chief of Staff AI Enablement Project
 
-**An autonomous, email-based Chief of Staff powered by state-of-the-art AI. Radlee lives in your Gmail inbox and helps you execute tasks using the Getting Things Done (GTD) methodology.**
+**An autonomous, email-based Chief of Staff powered by Google Gemini. Radlee lives in your Gmail inbox and helps you execute tasks using the Getting Things Done (GTD) methodology.**
 
 Radlee is both an active AI Agent that helps manage your daily tasks and a **choose-your-own-adventure style educational curriculum** designed to give you hands-on experience building Agentic AI. 
 
@@ -14,8 +14,8 @@ You can set Radlee up in about 20 minutes to get a fully functional, zero-cost, 
 
 ```
 ┌──────────────────────────┐     ┌──────────────────────────┐     ┌──────────────────────────┐
-│    1. CORE ONBOARDING    │ ──> │    2. CONFIGURE VAULT    │ ──> │    3. FIRST TEST FLIGHT  │
-│  Install Apps Script &   │     │  Fill out "Mad Libs" in  │     │   Send a multi-action    │
+│    1. CORE ONBOARDING    │ ──> │    2. CONFIGURE VAULT    │ ──> │    3. FIRST TEST RUN     │
+│  Install Apps Script &   │     │  Provide Context docs in │     │   Send a multi-action    │
 │   Gemini Key (~5 min)    │     │   your Google Drive (10m)│     │     email (~5 min)       │
 └──────────────────────────┘     └──────────────────────────┘     └──────────────────────────┘
 ```
@@ -24,11 +24,10 @@ You can set Radlee up in about 20 minutes to get a fully functional, zero-cost, 
 
 ## Core Features & Benefits
 
-- **Secure Email Interface:** Radlee only responds to your approved email address, completely ignoring unauthorized senders.
-- **100% Free / Low Cost:** Optimized to work within the daily free tier limit of the Gemini API. You can expand capacity by adding billing details if you desire.
+- **Secure Email Interface:** Radlee only responds to your approved email address and completely ignores unauthorized senders.
 - **Workspace Actions:** Radlee schedules Google Calendar events, creates Google Tasks, drafts Gmail replies, and creates Google Docs natively.
-- **Goal Alignment:** Radlee parses your custom "Radlee Vault" documents to align every action with your high-level priorities and values.
-- **Automated Briefings:** Receives morning operational digests (daily), strategic primers (Mondays), and structured GTD Weekly Reviews (Sundays) automatically.
+- **Goal Alignment:** Radlee parses your custom context "Radlee Vault" documents to align every action with your high-level priorities and values.
+- **Automated Briefings:** Receive morning operational digests (daily), strategic primers (Mondays), and structured GTD Weekly Reviews (Sundays) from Radlee automatically.
 - **Voice Commands:** Send an audio file attachment (voice note). Radlee transcribes your speech, understands your request, and runs the appropriate workspace action.
 - **Highly Accessible:** Operates purely via email text and audio attachments. It integrates natively with your existing assistive technologies (like screen readers or voice dictation) without any new layouts or dashboards to navigate.
 - **Global Language Support:** Powered by Gemini, Radlee understands and communicates in dozens of languages (Spanish, Japanese, French, Portuguese, etc.).
@@ -37,15 +36,13 @@ You can set Radlee up in about 20 minutes to get a fully functional, zero-cost, 
 
 ## 🎓 Core Concepts You Will Learn
 
-By leveling up your Radlee adventure, you will build and understand real-world Agentic AI systems:
+You will build and understand the folllowing real-world Agentic AI techniques:
 
-- **Prompt Engineering (Mad Libs Format):** The Vault uses an interactive "Mad Libs" format to help you notice how specific word choices affect an AI's behavior. By filling templates, you'll learn how to inject rules, constraints, and custom styles into an LLM.
-- **The ReAct Framework:** Learn how Radlee decides what context it needs, reads it, and reasons before acting—minimizing hallucinations and controlling open-ended AI loop costs.
+- **Prompt Engineering:** The Vault uses an interactive "Mad Libs" format to help you notice how specific word choices affect an AI's behavior. By filling templates, you'll learn how to inject rules, constraints, and custom styles into an LLM.
+- **The ReAct Framework:** Learn how Radlee decides what context it needs, reads it, and reasons before acting to minimize hallucinations and control costs associated with open-ended AI loops.
 - **Rule-Based Guardrails:** Discover how to blend AI autonomy with safety. If Radlee's confidence score drops below 85% on high-stakes actions, a guardrail automatically downgrades it to a draft for human approval.
 - **Long-Term Memory & RAG:** When you tell Radlee a preference, it programmatically writes it to a Google Doc and reads it on future runs, building a continuous learning loop.
-- **Idempotency Locks:** Guarantee that an LLM can never schedule double-bookings or duplicate tasks, even if its run-loop glitches or retries.
-- **Concurrency Management:** Learn how to handle "Race Conditions". If you email Radlee multiple times simultaneously, a Google LockService queues them up to write to your memory documents safely without scrambling data.
-
+  
 ---
 
 # 👤 User Guide & Setup
@@ -126,7 +123,7 @@ Open the **`Radlee Vault`** folder in Google Drive. By filling out the blanks in
 *Note: `03_Dynamic_Memory` and `06_Someday_Maybe` should be left blank; Radlee writes to them programmatically!*
 
 #### 2. Turn On Automatic Emails
-In your Google Apps Script editor, select **`setupTriggers`** from the top function dropdown and click **Run**. This schedules Radlee's cron-job to check your emails every 60 seconds and activates your automatic briefings:
+In your Google Apps Script editor, select **`setupTriggers`** from the top function dropdown and click **Run**. This schedules Radlee to check emails every 60 seconds and activates your automatic briefings:
 - **Morning Brief** (Mon-Fri, 7am): Your top 3 next actions aligned with your schedule and open tasks.
 - **Strategy Primer** (Mondays, 7am): Connects recent memory and learnings to your life goals.
 - **Weekly Review** (Sundays, 6pm): A structured guided review of your week and planning for the next.
