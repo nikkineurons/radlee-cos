@@ -150,9 +150,9 @@ When you email your own alias, Gmail delivers it to your Inbox immediately. If y
 ---
 
 ### Level 2: The Co-Pilot (No-Code)
-*Interact with Radlee like a human teammate. Radlee has a state-of-the-art LLM brain and a Google Workspace action registry.*
+*Interact with Radlee like a teammate. Radlee is equpped with the latest LLM capabilties and understanding*
 
-#### Interactive Action Showcase
+#### Interactive Actions
 
 | What you write | What Radlee does |
 |---|---|
