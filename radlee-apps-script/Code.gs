@@ -501,7 +501,7 @@ function handleStructuredRouting(action, params, SETTINGS) {
   }
 
   // Defensive Fallback for Calendar Time: Default to sensible time if still missing or invalid
-  if (action === "CALENDAR") {
+  if (action === "CALENDAR" && !SETTINGS._isDiagnostic) {
     if (!params.title) {
       params.title = "Scheduled Event";
     }
