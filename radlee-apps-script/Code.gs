@@ -65,10 +65,18 @@ function processEmailInbox() {
     const query = `to:"${SETTINGS.RADLEE_EMAIL}" is:unread -label:radlee-processed from:"${SETTINGS.OWNER_EMAIL}"`;
     const threads = GmailApp.search(query);
 
+    let processedCount = 0; // 🎓 LESSON: Serverless Execution Limits - Apps Script has a 6-minute timeout. We batch process a max of 2 threads per minute to prevent crashing.
+
     for (const thread of threads) {
+      if (processedCount >= 2) break;
+      processedCount++;
+
       const messages = thread.getMessages();
       const lastMessage = messages[messages.length - 1]; // We care about the latest message in the thread
       
+      // 🎓 LESSON: The "Confused Deputy" Problem - Attackers could spoof the 'From' address or you could forward a malicious email.
+      // In a strict production environment, we should verify the DKIM signature of the sender, but for this educational project,
+      // ensuring it was explicitly sent TO the radlee alias helps mitigate blind execution of forwarded payloads.
       // Strict Sent-To explicit check just to be absolutely sure (redundant to query, but secure)
       const toField = lastMessage.getTo();
       if (!toField.toLowerCase().includes(SETTINGS.RADLEE_EMAIL.toLowerCase())) {
@@ -179,7 +187,14 @@ function saveUserHistory(userId, userInput, agentResponse) {
   const history = getUserHistory(userId);
   history.push({ role: "user",  content: userInput });
   history.push({ role: "model", content: agentResponse });
-  const capped = history.slice(-20); // keep last 10 turns (20 entries)
+  let capped = history.slice(-20); // keep last 10 turns (20 entries)
+  
+  // 🎓 LESSON: Memory Limits & Truncation - Apps Script PropertiesService has a strict 9KB limit per value.
+  // If we don't aggressively truncate this JSON string, long conversations will crash the script silently.
+  while (JSON.stringify(capped).length > 8000 && capped.length > 2) {
+    capped = capped.slice(2); // Drop the oldest turn (user + model)
+  }
+  
   PropertiesService.getUserProperties().setProperty("history_" + userId, JSON.stringify(capped));
 }
 
@@ -309,12 +324,17 @@ function processAgentRequest(userInput, sessionHistory = []) {
       
       const candidate = callGeminiNativeWithTools(systemPrompt, contents, SETTINGS.API_KEY);
       
+      if (!candidate.content) {
+        throw new Error("Gemini returned no content. Finish reason: " + (candidate.finishReason || "UNKNOWN"));
+      }
+      
       // Append Model's turn to contents array
       contents.push(candidate.content);
       
-      const part = candidate.content.parts[0];
-      if (part.functionCall) {
-        const call = part.functionCall;
+      const functionCallPart = candidate.content.parts.find(p => p.functionCall);
+      
+      if (functionCallPart) {
+        const call = functionCallPart.functionCall;
         const actionName = call.name;
         const params = call.args || {};
         
@@ -332,8 +352,14 @@ function processAgentRequest(userInput, sessionHistory = []) {
             }
           }]
         });
+        continue;
+      } else {
         // Model chose not to call any more tools; we have our final text response!
-        let finalOutput = part.text;
+        let finalOutput = candidate.content.parts
+          .filter(p => p.text)
+          .map(p => p.text)
+          .join("\n");
+          
         if (!finalOutput || !finalOutput.trim()) {
           const hasError = finalObservations.some(obs => obs.toLowerCase().includes("error:"));
           if (hasError) {
