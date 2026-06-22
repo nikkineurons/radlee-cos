@@ -13,15 +13,15 @@ graph TD
     Gmail[Gmail Inbox]
     
     %% Core Components
-    Poller[Email Poller\nprocessEmailInbox]
+    Poller[Email Poller processEmailInbox]
     History[(User History Cache)]
-    Agent[Agent Core\nprocessAgentRequest]
-    Gemini[Gemini API\nNative Tool Calling]
-    Router[Action Router\nhandleStructuredRouting]
+    Agent[Agent Core processAgentRequest]
+    Gemini[Gemini API Native Tool Calling]
+    Router[Action Router handleStructuredRouting]
     
     %% External Services
-    GWorkspace[Google Workspace APIs\nDrive, Calendar, Tasks]
-    Vault[(Long-term Vault\nGoogle Drive)]
+    GWorkspace[Google Workspace APIs Drive, Calendar, Tasks]
+    Vault[(Long-term Vault Google Drive)]
 
     %% Flow
     User -- "Sends Email/Audio" --> Gmail
@@ -91,6 +91,3 @@ sequenceDiagram
     Poller->>User: Reply to email thread
     deactivate Poller
 ```
-
-> [!TIP]
-> **Idempotency Locks**: During the `Router -> Workspace` step, Radlee hashes the action name and arguments. If the model loops and requests the exact same action within a few seconds, the lock prevents duplicate events or emails from being created!
